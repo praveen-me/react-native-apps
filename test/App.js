@@ -6,10 +6,11 @@ function Counter (props){
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
-    setInterval(() => {
+    let interVal = setInterval(() => {
       setCounter(counter + 1);
+      clearInterval(interVal);
     }, 1000)
-  })
+  }, [counter])
 
   const {color, size} = props;
   return (
