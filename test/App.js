@@ -1,19 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component, useState, useEffect } from 'react'
+import { AppRegistry, View, Text, StyleSheet } from 'react-native'
 
-export default function App() {
+function Counter (props){
+
+  const [counter, setCounter] = useState(0)
+
+  useEffect(() => {
+    setInterval(() => {
+      setCounter(counter + 1);
+    }, 1000)
+  })
+
+  const {color, size} = props;
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+    <Text style={{color, fontSize: size}}>
+      {counter}
+    </Text>
+  )
+}
+
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Counter color={'lightblue'} size={16} />
+        <Counter color={'skyblue'} size={32} />
+        <Counter color={'steelblue'} size={80} />
+        <Counter color={'darkblue'} size={140} />
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-});
+})
