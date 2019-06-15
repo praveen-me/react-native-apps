@@ -1,4 +1,4 @@
-// import Timer from "./demos/Timer";
-import List from "./demos/List";
+import Timer from "./demos/Timer";
+import SimpleSectionList from "./demos/List";
 
-export default List;
+export default SimpleSectionList;
