@@ -1,4 +1,5 @@
 import Timer from "./demos/Timer";
-import SimpleSectionList from "./demos/List";
+import { SimpleSectionList, SimpleFlatList } from "./demos/List";
+import { SimpleList } from "./demos/ListView";
 
-export default SimpleSectionList;
+export default SimpleList;

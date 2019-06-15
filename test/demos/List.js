@@ -76,7 +76,7 @@ const sections = [
   }
 ];
 
-const SimpleSectionList = () => {
+export const SimpleSectionList = () => {
   const renderSectionHeader = ( { section } ) => (
     <Text style={sectionListStyles.header}>{ section.title }</Text>
   );
@@ -114,5 +114,3 @@ const sectionListStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default SimpleSectionList;
