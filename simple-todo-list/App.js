@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Header from './components/Header';
 import Input from './components/Input';
+import List from './components/List';
 
 export default function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (todo) => {
+    setTodos([...todos, todo]);
+  }
+  
   return (
     <>
       <Header>To-Do List</Header>
-      <Input placeholder="Type a todo, then hit enter!"/>
+      <Input 
+      placeholder="Type a todo, then hit enter! 🎧"
+      addTodo={addTodo}/>
+      <List todos={todos}/>
     </>
   );
 }
