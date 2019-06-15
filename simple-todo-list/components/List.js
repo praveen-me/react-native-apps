@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-const List = ({ todos }) => {
+const List = ({ todos, removeTodo }) => {
   return (
     <View>
       {
         todos.map((todo, i) => (
-          <TouchableOpacity key={i} style={styles.item}>
+          <TouchableOpacity 
+          key={i} 
+          style={styles.item}
+          onPress={() => removeTodo(i)}>
             <Text>{todo}</Text>
           </TouchableOpacity>
         ))

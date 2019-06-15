@@ -10,6 +10,10 @@ export default function App() {
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
   }
+
+  const removeTodo = (index) => {
+    setTodos(todos.filter((v, i) => i !== index));
+  }
   
   return (
     <>
@@ -17,7 +21,8 @@ export default function App() {
       <Input 
       placeholder="Type a todo, then hit enter! 🎧"
       addTodo={addTodo}/>
-      <List todos={todos}/>
+      <List todos={todos}
+      removeTodo={removeTodo}/>
     </>
   );
 }

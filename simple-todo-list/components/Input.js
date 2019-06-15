@@ -14,7 +14,10 @@ const Input = ({ placeholder, addTodo }) => {
     value={todo}
     placeholder={placeholder}
     onChangeText={setTodoValue}
-    onSubmitEditing={() => addTodo(todo)} />
+    onSubmitEditing={() => {
+      addTodo(todo);
+      setTodo('');
+    }} />
   )
 };
 
