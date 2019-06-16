@@ -1,29 +1,19 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 import Header from './Header';
 import List from './List';
 import Input from './Input';
 
-function MainApp() {
-  const [todos, setTodos] = useState([]);
-
-  const addTodo = (todo) => {
-    setTodos([...todos, todo]);
-  }
-
-  const removeTodo = (index) => {
-    setTodos(todos.filter((v, i) => i !== index));
-  }
-  
+function MainApp({ todos }) {
   return (
-    <>
+    <View>
       <Header>To-Do List</Header>
-      <Input 
+      <Input
       placeholder="Type a todo, then hit enter! 🎧"
-      addTodo={addTodo}/>
-      <List todos={todos}
-      removeTodo={removeTodo}/>
-    </>
+     />
+      <List todos={todos}/>
+    </View>
   );
 }
 
@@ -36,4 +26,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainApp;
+function mapStateToProps ({ todos }) {
+  return { todos }
+}
+
+
+export default connect(mapStateToProps)(MainApp);

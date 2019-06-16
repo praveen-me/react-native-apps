@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import {StyleSheet, TextInput } from 'react-native';
+import { addTodo } from '../store/actions/todoActions';
+import { connect } from 'react-redux';
 
-const Input = ({ placeholder, addTodo }) => {
+const Input = ({ placeholder, dispatch }) => {
   const [todo, setTodo] = useState('');
 
   const setTodoValue = (text) => {
     setTodo(text);
   } 
+
+  const handleSubmit = () => {
+    dispatch(addTodo(todo));
+    setTodo('');
+  }
 
   return (
     <TextInput 
@@ -14,10 +21,7 @@ const Input = ({ placeholder, addTodo }) => {
     value={todo}
     placeholder={placeholder}
     onChangeText={setTodoValue}
-    onSubmitEditing={() => {
-      addTodo(todo);
-      setTodo('');
-    }} />
+    onSubmitEditing={handleSubmit} />
   )
 };
 
@@ -30,4 +34,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Input;
+export default connect()(Input);
