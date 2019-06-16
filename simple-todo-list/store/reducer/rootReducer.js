@@ -1,16 +1,20 @@
-import { ADD_TODO } from "../types";
+import { ADD_TODO, REMOVE_TODO } from "../types";
 
 const initState = {
   todos: []
 }
 
-const rootReducer = (state = initState, action) => {
-  console.log(action);
-  
+const rootReducer = (state = initState, action) => {  
   switch (action.type) {
     case ADD_TODO : {
       return {
         todos: [...state.todos, action.payload]
+      }
+    }
+
+    case REMOVE_TODO : {
+      return {
+        todos: state.todos.filter( ( v, id ) => id !== action.payload )
       }
     }
     

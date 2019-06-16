@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { removeTodo } from '../store/actions/todoActions';
 
-const List = ({ todos, removeTodo }) => {
+const List = ({ todos, dispatch }) => {
+  const handleRemoveTodo = (index) => {
+    dispatch(removeTodo(index));
+  } 
+  
   return (
     <View>
       {
@@ -9,7 +15,7 @@ const List = ({ todos, removeTodo }) => {
           <TouchableOpacity 
           key={i} 
           style={styles.item}
-          onPress={() => removeTodo(i)}>
+          onPress={() => handleRemoveTodo(i)}>
             <Text>{todo}</Text>
           </TouchableOpacity>
         ))
@@ -26,4 +32,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default List;
+export default connect()(List);
