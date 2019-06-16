@@ -1,37 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import Header from './components/Header';
-import Input from './components/Input';
-import List from './components/List';
 
-export default function App() {
-  const [todos, setTodos] = useState([]);
+import { Provider } from 'react-redux';
+import store from './store/store';
+import MainApp from './components/MainApp';
 
-  const addTodo = (todo) => {
-    setTodos([...todos, todo]);
-  }
 
-  const removeTodo = (index) => {
-    setTodos(todos.filter((v, i) => i !== index));
-  }
-  
-  return (
-    <>
-      <Header>To-Do List</Header>
-      <Input 
-      placeholder="Type a todo, then hit enter! 🎧"
-      addTodo={addTodo}/>
-      <List todos={todos}
-      removeTodo={removeTodo}/>
-    </>
-  );
-}
+console.log(store.getState(), "store")
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => (
+  <Provider store={store}>
+    <MainApp />
+  </Provider>
+);
+
+export default App;
