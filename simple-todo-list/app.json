@@ -23,8 +23,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
+		"ios": {
+			"bundleIdentifier": "com.yourcompany.yourappname",
+			"supportsTablet": true
+    },
+    "android": {
+      "package": "com.yourcompany.yourappname"
     }
   }
 }

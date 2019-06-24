@@ -8,8 +8,6 @@ export const addTodo = (todoData) => {
 };
 
 export const removeTodo = ( todoId ) => {
-  console.log(todoId)
-  
   return {
     type: REMOVE_TODO,
     payload: todoId
