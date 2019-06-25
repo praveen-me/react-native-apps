@@ -1,11 +1,23 @@
 import { createStore, compose } from 'redux';
 import rootReducer from './reducer/rootReducer';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(), autoRehydrate);
+
+const store = createStore(persistedReducer, composeEnhancers());
 
 // for make store persist
-persistStore(store);
+const persistor = persistStore(store);
 
-export default store;
+export {
+	store,
+	persistor
+};
