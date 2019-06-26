@@ -1,25 +1,57 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Platform, StatusBar, View} from 'react-native';
 import { Provider } from 'react-redux';
+import { AppLoading, Asset, Font, Icon } from 'expo';
 import store from './store/store';
 
-console.log(store.getState())
+export default function App(props) {
+  const [isLoading, setIsLoading] = useState(false);
 
-export default function App() {
+  // handling loading initially
+  const loadResourcesAsync = async () => {
+    return Promise.all([
+      Asset.loadAsync([
+        require('./assets/images/robot-dev.png'),
+        require('./assets/images/robot-prod.png'),
+      ]),
+      Font.loadAsync({
+        ...Icon.Ionicons.font,
+        'space-mono' : require('./assets/fonts/SpaceMono-Regular.ttf')
+      })
+    ])
+  }
+
+  // handling err if something when wrong when app is loading
+  const handleLoadingErr = (error) => {
+    console.warn(error);
+  }
+
+  // handling part when the loading got finished
+  const handleFinishLoading = () => {
+    setIsLoading(true);
+  }
+
   return (
-    <Provider store={store}>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    </Provider>
+    isLoading ? (
+      <AppLoading 
+      startAsync={loadResourcesAsync}
+      onError={handleLoadingErr}
+      onFinish={handleFinishLoading}/>
+    ) : (
+      <Provider store={store}>
+        <View style={styles.container}>
+          { Platform.OS === 'ios' && <StatusBar barStyle="default"/> }
+
+        </View>
+      </Provider>
+
+    )
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff'
   },
 });
