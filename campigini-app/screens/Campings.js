@@ -1,8 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
+import {
+  ImageBackground, Platform, Text, ScrollView, StyleSheet, TouchableOpacity, View, Dimensions, SafeAreaView,
+} from 'react-native';
 
 const Campings = () => {
-	return <Text>Welcoms to the Campings</Text>
-}
+  const apple = '';
+
+  return <Text>Welcomes to the Campings</Text>;
+};
 
 export default Campings;

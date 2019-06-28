@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001' && npm start"
+    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001' && npm start",
+    "eslint:fix": "eslint --fix *.js"
   },
   "dependencies": {
     "expo": "^33.0.0",
@@ -20,7 +21,12 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.1.1"
+    "babel-preset-expo": "^5.1.1",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.14.2"
   },
   "private": true
 }
