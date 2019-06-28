@@ -7,4 +7,4 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-web-report/
+.DS_Store

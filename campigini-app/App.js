@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Platform, StatusBar, View} from 'react-native';
+import { StyleSheet, Platform, StatusBar, View, Text} from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import store from './store/store';
+import Campings from './screens/Campings';
 
 export default function App(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +42,7 @@ export default function App(props) {
       <Provider store={store}>
         <View style={styles.container}>
           { Platform.OS === 'ios' && <StatusBar barStyle="default"/> }
-
+          <Campings />
         </View>
       </Provider>
 
