@@ -1,2 +1,6 @@
-import React from 'React';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import ScreenNavigator from './ScreenNavigator';
+
+export default createAppContainer(createSwitchNavigator({
+  Main: ScreenNavigator,
+}));

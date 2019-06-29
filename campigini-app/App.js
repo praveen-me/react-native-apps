@@ -8,6 +8,7 @@ import {
 } from 'expo';
 import store from './store/store';
 import Campings from './screens/Campings';
+import AppNavigator from './navigation/AppNavigator';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +54,7 @@ export default function App(props) {
       <Provider store={store}>
         <View style={styles.container}>
           { Platform.OS === 'ios' && <StatusBar barStyle="default" /> }
-          <Campings />
+          <AppNavigator />
         </View>
       </Provider>
 
