@@ -9,11 +9,12 @@ const Header = ({ children }) => {
   )
 };
 
+// Header Styles
 const styles = StyleSheet.create({
   header : {
     backgroundColor: 'skyblue',
     padding: 15,
-    paddingTop: 30
+    paddingTop: 50
   },
   title: {
     textAlign: 'center',
