@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 const Header = ({ children }) => {
   return (
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   header : {
     backgroundColor: 'skyblue',
     padding: 15,
-    paddingTop: 50
+    paddingTop: Constants.statusBarHeight
   },
   title: {
     textAlign: 'center',
