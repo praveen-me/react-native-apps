@@ -15,6 +15,24 @@ const List = ({ todos, dispatch }) => {
   return (
     <View>
       {
+        todos && (
+          <View style={styles.showTodoCountContainer}>
+            <View style={styles.showTodoCountWrapper}>
+              <Text>To-dos Left</Text>
+              <Text style={styles.showTodoCountText}>
+              { todos.filter(todo => todo.isCompleted === false).length }
+              </Text>
+            </View>
+            
+            <View style={styles.showTodoCountWrapper}>
+              <Text>To-dos Completed</Text>
+              <Text style={styles.showTodoCountText}> { todos.filter(todo => todo.isCompleted === true).length }</Text>
+            </View>
+
+          </View>
+        )
+      }      
+      {
         todos.map(({ text, isCompleted }, i) => (
           <TouchableOpacity 
           key={i} 
@@ -43,6 +61,17 @@ const styles = StyleSheet.create({
   },
   toggle : {
     marginLeft: "auto"
+  },
+  showTodoCountContainer : {
+    padding: 15,
+    backgroundColor: '#ddd'
+  },
+  showTodoCountWrapper: {
+    flexDirection: 'row',
+    marginVertical: 10
+  },
+  showTodoCountText: {
+    marginLeft: 'auto'
   }
 })
 
