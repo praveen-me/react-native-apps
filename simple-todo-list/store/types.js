@@ -1,3 +1,5 @@
 export const ADD_TODO = "ADD_TODO";
 
 export const REMOVE_TODO = "REMOVE_TODO";
+
+export const TOGGLE_TODO_COMPLETE = "TOGGLE_TODO_COMPLETE";

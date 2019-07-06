@@ -11,7 +11,10 @@ const Input = ({ placeholder, dispatch }) => {
   } 
 
   const handleSubmit = () => {
-    dispatch(addTodo(todo));
+    dispatch(addTodo({
+      text: todo,
+      isCompleted: false
+    }));
     setTodo('');
   }
 
