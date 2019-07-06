@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Switch } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Switch, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { removeTodo, todoToggleComplete } from '../store/actions/todoActions';
 
@@ -31,7 +31,8 @@ const List = ({ todos, dispatch }) => {
 
           </View>
         )
-      }      
+      }
+      <ScrollView styles={styles.todoList}>
       {
         todos.map(({ text, isCompleted }, i) => (
           <TouchableOpacity 
@@ -47,6 +48,7 @@ const List = ({ todos, dispatch }) => {
           </TouchableOpacity>
         ))
       }
+      </ScrollView>
     </View>
   )
 };
@@ -72,6 +74,11 @@ const styles = StyleSheet.create({
   },
   showTodoCountText: {
     marginLeft: 'auto'
+  },
+  todoList : {
+    marginVertical: 50,
+    paddingBottom: 20,
+    flex: 1
   }
 })
 
