@@ -1,16 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Switch, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { removeTodo, todoToggleComplete } from '../store/actions/todoActions';
+import Todo from './Todo';
 
-const List = ({ todos, dispatch }) => {
-  const handleRemoveTodo = (index) => {
-    dispatch(removeTodo(index));
-  } 
-  
-  const handleTodoCompleteToggle = (index) => {
-    dispatch(todoToggleComplete(index));
-  }
+const List = ({ todos}) => {
 
   return (
     <View>
@@ -32,20 +25,10 @@ const List = ({ todos, dispatch }) => {
           </View>
         )
       }
-      <ScrollView styles={styles.todoList}>
+      <ScrollView style={styles.todoList}>
       {
-        todos.map(({ text, isCompleted }, i) => (
-          <TouchableOpacity 
-          key={i} 
-          style={styles.item}
-          onPress={() => handleRemoveTodo(i)}>
-            <Text>{text}</Text>
-            <Switch 
-            style={styles.toggle}
-            value={ isCompleted }
-            onValueChange={ () => handleTodoCompleteToggle(i) }
-            />
-          </TouchableOpacity>
+        todos.map((todo, i) => (
+          <Todo key={i} {...todo} i={i}/>
         ))
       }
       </ScrollView>
@@ -54,16 +37,6 @@ const List = ({ todos, dispatch }) => {
 };
 
 const styles = StyleSheet.create({
-  item : {
-    backgroundColor: 'whitesmoke',
-    marginBottom : 5,
-    padding: 15,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  toggle : {
-    marginLeft: "auto"
-  },
   showTodoCountContainer : {
     padding: 15,
     backgroundColor: '#ddd'
@@ -76,9 +49,9 @@ const styles = StyleSheet.create({
     marginLeft: 'auto'
   },
   todoList : {
-    marginVertical: 50,
-    paddingBottom: 20,
-    flex: 1
+    flexDirection: 'column'
+    // marginVertical: 50,
+    // paddingBottom: 20,
   }
 })
 
