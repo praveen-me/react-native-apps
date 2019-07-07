@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO_COMPLETE } from "../types";
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO_COMPLETE, REMOVE_ALL_TODOS } from "../types";
 
 export const addTodo = (todoData) => {
   return {
@@ -20,3 +20,5 @@ export const todoToggleComplete = ( todoId ) => {
     payload: todoId
   }
 }
+
+export const removeAllTodos = () => ({ type: REMOVE_ALL_TODOS });

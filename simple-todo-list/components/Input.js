@@ -13,7 +13,8 @@ const Input = ({ placeholder, dispatch }) => {
   const handleSubmit = () => {
     dispatch(addTodo({
       text: todo,
-      isCompleted: false
+      isCompleted: false,
+      id: Math.random() * Date.now()
     }));
     setTodo('');
   }

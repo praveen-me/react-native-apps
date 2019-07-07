@@ -3,10 +3,10 @@ import { TouchableOpacity, Text, Switch, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { removeTodo, todoToggleComplete } from '../store/actions/todoActions';
 
-const Todo = ({ text, isCompleted, i, dispatch }) => {
+const Todo = ({ text, isCompleted, id, dispatch }) => {
 	const handleRemoveTodo = (index) => {
 		dispatch(removeTodo(index));
-	} 
+	}
 	
 	const handleTodoCompleteToggle = (index) => {
 		dispatch(todoToggleComplete(index));
@@ -15,12 +15,12 @@ const Todo = ({ text, isCompleted, i, dispatch }) => {
 	return(
 		<TouchableOpacity 
 		style={styles.item}
-		onPress={() => handleRemoveTodo(i)}>
+		onPress={() => handleRemoveTodo(id)}>
 			<Text>{text}</Text>
 			<Switch 
 			style={styles.toggle}
 			value={ isCompleted }
-			onValueChange={ () => handleTodoCompleteToggle(i) }
+			onValueChange={ () => handleTodoCompleteToggle(id) }
 			/>
 		</TouchableOpacity>
 	)
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
   toggle : {
     marginLeft: "auto"
   },
-})
+});
 
 export default connect()(Todo);

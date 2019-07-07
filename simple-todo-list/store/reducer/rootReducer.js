@@ -14,14 +14,21 @@ const rootReducer = (state = initState, action) => {
 
     case REMOVE_TODO : {
       return {
-        todos: state.todos.filter( ( v, id ) => id !== action.payload )
+        todos: state.todos.filter( ( v, id ) => v.id !== action.payload )
       }
     }
 
     case TOGGLE_TODO_COMPLETE : {
       const todos = [...state.todos];
-      
-      todos[action.payload].isCompleted = !todos[action.payload].isCompleted;
+      let itemId = null;
+
+      todos.find((v, i) => {
+        if( v.id === action.payload ) {
+          itemId = i;
+        };
+      });
+
+      todos[itemId].isCompleted = !todos[itemId].isCompleted;
       
       return {
         todos
