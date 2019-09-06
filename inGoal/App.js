@@ -19,15 +19,15 @@ export default function App() {
       ...prevState,
       { id: Math.random() * Date.now(), value: goal }
     ]);
+    handleToggleModal();
   };
 
   const deleteGoal = id => {
-    console.log(id);
     setGoals(prevState => prevState.filter(item => item.id !== id));
   };
 
   const handleToggleModal = () => {
-    setIsAddGoalModalOpened(!isAddGoalModalOpened);
+    setIsAddGoalModalOpened(prevState => !prevState);
   };
 
   const _renderItem = ({ item }) => (
@@ -42,6 +42,7 @@ export default function App() {
       <GoalInput
         addGoal={addGoal}
         isAddGoalModalOpened={isAddGoalModalOpened}
+        handleToggleModal={handleToggleModal}
       />
       <View>
         <FlatList
