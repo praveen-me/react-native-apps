@@ -12,6 +12,7 @@ import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [goals, setGoals] = useState([]);
+  const [isAddGoalModalOpened, setIsAddGoalModalOpened] = useState(false);
 
   const addGoal = goal => {
     setGoals(prevState => [
@@ -25,6 +26,10 @@ export default function App() {
     setGoals(prevState => prevState.filter(item => item.id !== id));
   };
 
+  const handleToggleModal = () => {
+    setIsAddGoalModalOpened(!isAddGoalModalOpened);
+  };
+
   const _renderItem = ({ item }) => (
     <GoalsList item={item} deleteGoal={deleteGoal} />
   );
@@ -33,7 +38,11 @@ export default function App() {
 
   return (
     <View style={styles.root}>
-      <GoalInput addGoal={addGoal} />
+      <Button onPress={handleToggleModal} title="Add New Goal" />
+      <GoalInput
+        addGoal={addGoal}
+        isAddGoalModalOpened={isAddGoalModalOpened}
+      />
       <View>
         <FlatList
           data={goals}
