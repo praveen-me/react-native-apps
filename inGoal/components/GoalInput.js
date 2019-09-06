@@ -8,6 +8,11 @@ const GoalInput = ({ addGoal, isAddGoalModalOpened, handleToggleModal }) => {
     setGoal(value);
   };
 
+  const handleAddGoal = () => {
+    addGoal(goal);
+    setGoal("");
+  };
+
   return (
     <Modal animationType="slide" visible={isAddGoalModalOpened}>
       <View style={styles.inputContainer}>
@@ -22,7 +27,7 @@ const GoalInput = ({ addGoal, isAddGoalModalOpened, handleToggleModal }) => {
             <Button title="CANCEL" color="red" onPress={handleToggleModal} />
           </View>
           <View style={styles.btn}>
-            <Button title="ADD" onPress={() => addGoal(goal)} />
+            <Button title="ADD" onPress={handleAddGoal} />
           </View>
         </View>
       </View>
