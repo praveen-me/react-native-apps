@@ -1,9 +1,9 @@
 const initState = {
-	todos: []
+  todos: []
 };
 
 export default function rootReducer(state = initState, action) {
-	switch(action.type) {
-		default: return state;
-	}
+  switch(action.type) {
+    default: return state;
+  }
 }

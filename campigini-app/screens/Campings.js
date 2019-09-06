@@ -5,9 +5,6 @@ import {
 import { MapView } from 'expo';
 import { Ionicons, FontAwesome, Foundation, SimpleLineIcons } from '@expo/vector-icons';
 
-console.log(MapView);
-
-
 const { height, width } = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
@@ -200,7 +197,6 @@ class Campings extends Component {
   }
 
   renderMap() {
-    // const 
     
     return (
      <View></View> 
