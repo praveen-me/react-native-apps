@@ -17,12 +17,21 @@ export default function App() {
     setTotalGameRounds(totalRounds);
   };
 
+  const startGameAgainHandler = () => {
+    setTotalGameRounds(null);
+    setSelectedNumber(null);
+  };
+
   return (
     <View style={styles.root}>
       <Header title="Guess a Number" />
       {selectedNumber ? (
         totalGuessRounds ? (
-          <GameOverScreen />
+          <GameOverScreen
+            roundNumbers={totalGuessRounds}
+            userNumber={selectedNumber}
+            startGameAgain={startGameAgainHandler}
+          />
         ) : (
           <GameScreen
             userChoice={selectedNumber}
