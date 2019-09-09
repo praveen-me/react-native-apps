@@ -12,6 +12,8 @@ import Card from "../components/Card";
 import colors from "../constants/colors";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
+import DefaultStyles from "./../constants/default-styles";
+import MyButton from "../components/MyButton";
 
 const StartGameScreen = ({ onStartGame }) => {
   const [inputValue, setInputValue] = useState("");
@@ -49,7 +51,9 @@ const StartGameScreen = ({ onStartGame }) => {
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a New Game!</Text>
+        <Text style={{ ...styles.title, ...DefaultStyles.boldText }}>
+          Start a New Game!
+        </Text>
         <Card style={styles.inputContainer}>
           <Text>Select a Number</Text>
           <Input
@@ -83,10 +87,9 @@ const StartGameScreen = ({ onStartGame }) => {
           <Card style={styles.numberCard}>
             <Text>You Selected</Text>
             <NumberContainer>{enteredNumber}</NumberContainer>
-            <Button
-              title="START GAME"
-              onPress={() => onStartGame(enteredNumber)}
-            />
+            <MyButton onPress={() => onStartGame(enteredNumber)}>
+              START GAME
+            </MyButton>
           </Card>
         )}
       </View>
