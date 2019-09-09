@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, Text, StyleSheet, Button, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Alert,
+  ScrollView
+} from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,9 +25,10 @@ const genRandomNum = (min, max, exclude) => {
 };
 
 const GameScreen = ({ userChoice, onGameOver }) => {
-  const [currentGuess, setCurrentGuess] = useState(
-    genRandomNum(1, 100, userChoice)
-  );
+  const initialGuess = genRandomNum(1, 100, userChoice);
+
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [pastGuesses, setPastGuesses] = useState([initialGuess]);
   const [guessRounds, setGuessRounds] = useState(0);
 
   const currentLow = useRef(1);
@@ -46,7 +54,7 @@ const GameScreen = ({ userChoice, onGameOver }) => {
     if (direction === "lower") {
       currentHigh.current = currentGuess;
     } else {
-      currentLow.current = currentGuess;
+      currentLow.current = currentGuess + 1;
     }
 
     const nextNumber = genRandomNum(
@@ -57,6 +65,7 @@ const GameScreen = ({ userChoice, onGameOver }) => {
 
     setCurrentGuess(nextNumber);
     setGuessRounds(prevState => prevState + 1);
+    setPastGuesses(prevState => [nextNumber, ...prevState]);
   };
 
   return (
@@ -71,6 +80,18 @@ const GameScreen = ({ userChoice, onGameOver }) => {
           <Ionicons name="ios-add" size={24} />
         </MyButton>
       </Card>
+      <View style={styles.listContainer}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.list}>
+          {pastGuesses.map((guess, index) => (
+            <View key={guess} style={styles.listItem}>
+              <Text>#{pastGuesses.length - index}</Text>
+              <Text>{guess}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -86,6 +107,26 @@ const styles = StyleSheet.create({
     width: "80%",
     justifyContent: "space-around",
     marginTop: 20
+  },
+  listContainer: {
+    flex: 1,
+    width: "80%"
+  },
+  list: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "flex-end"
+  },
+  listItem: {
+    width: "100%",
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    borderRadius: 3
   }
 });
 
