@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 import defaultStyles from "../constants/default-styles";
 import colors from "../constants/colors";
+import MyButton from "../components/MyButton";
 
 const GameOverScreen = ({ roundNumbers, userNumber, startGameAgain }) => {
   return (
@@ -26,7 +27,7 @@ const GameOverScreen = ({ roundNumbers, userNumber, startGameAgain }) => {
           </Text>
         </Text>
       </View>
-      <Button title="START GAME AGAIN" onPress={startGameAgain} />
+      <MyButton onPress={startGameAgain}>START GAME AGAIN</MyButton>
     </View>
   );
 };
