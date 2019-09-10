@@ -1,5 +1,11 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  Text,
+  Dimensions
+} from "react-native";
 import colors from "../constants/colors";
 
 const MyButton = ({ onPress, children }) => {
@@ -22,7 +28,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontFamily: "roboto",
-    fontSize: 18
+    fontSize: Dimensions.get("window").width > 350 ? 18 : 12
   }
 });
 

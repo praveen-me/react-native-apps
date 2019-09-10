@@ -1,34 +1,46 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ScrollView
+} from "react-native";
 import defaultStyles from "../constants/default-styles";
 import colors from "../constants/colors";
 import MyButton from "../components/MyButton";
 
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
+
 const GameOverScreen = ({ roundNumbers, userNumber, startGameAgain }) => {
   return (
-    <View style={styles.screen}>
-      <Text style={defaultStyles.boldText}>Game Over!!</Text>
-      <View style={styles.imageContainer}>
-        <Image
-          resizeMode="cover"
-          source={require("./../assets/success.png")}
-          style={styles.image}
-        />
-      </View>
-      <View style={styles.resultContainer}>
-        <Text style={[defaultStyles.normalText, styles.resultText]}>
-          Your phone needed{" "}
-          <Text style={[defaultStyles.boldText, styles.hightLight]}>
-            {roundNumbers}
-          </Text>{" "}
-          to guess the number{" "}
-          <Text style={[defaultStyles.boldText, styles.hightLight]}>
-            {userNumber}.
+    <ScrollView>
+      <View style={styles.screen}>
+        <Text style={defaultStyles.boldText}>Game Over!!</Text>
+        <View style={styles.imageContainer}>
+          <Image
+            resizeMode="cover"
+            source={require("./../assets/success.png")}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.resultContainer}>
+          <Text style={[defaultStyles.normalText, styles.resultText]}>
+            Your phone needed{" "}
+            <Text style={[defaultStyles.boldText, styles.hightLight]}>
+              {roundNumbers}
+            </Text>{" "}
+            to guess the number{" "}
+            <Text style={[defaultStyles.boldText, styles.hightLight]}>
+              {userNumber}.
+            </Text>
           </Text>
-        </Text>
+        </View>
+        <MyButton onPress={startGameAgain}>START GAME AGAIN</MyButton>
       </View>
-      <MyButton onPress={startGameAgain}>START GAME AGAIN</MyButton>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -39,13 +51,13 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   imageContainer: {
-    width: 300,
-    height: 300,
+    width: width * 0.6,
+    height: width * 0.6,
     overflow: "hidden",
     borderColor: colors.primary,
     borderWidth: 2,
-    marginVertical: 30,
-    borderRadius: 150
+    marginVertical: height / 20,
+    borderRadius: (width * 0.6) / 2
   },
   image: {
     width: "100%",
@@ -55,9 +67,11 @@ const styles = StyleSheet.create({
     color: colors.accent
   },
   resultText: {
-    fontSize: 20
+    fontSize: width > 350 ? 20 : 15,
+    textAlign: "center"
   },
   resultContainer: {
+    marginVertical: height / 40,
     padding: 20
   }
 });

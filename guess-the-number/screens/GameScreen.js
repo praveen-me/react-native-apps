@@ -3,9 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   Alert,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
@@ -106,11 +106,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "80%",
     justifyContent: "space-around",
-    marginTop: 20
+    marginTop: Dimensions.get("window").height > 600 ? 20 : 5
   },
   listContainer: {
     flex: 1,
-    width: "80%"
+    width: Dimensions.get("window").width > 350 ? "60%" : "80%"
   },
   list: {
     flexGrow: 1,
