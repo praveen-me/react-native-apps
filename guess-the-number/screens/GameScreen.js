@@ -30,6 +30,7 @@ const GameScreen = ({ userChoice, onGameOver }) => {
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [pastGuesses, setPastGuesses] = useState([initialGuess]);
   const [guessRounds, setGuessRounds] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
@@ -38,6 +39,16 @@ const GameScreen = ({ userChoice, onGameOver }) => {
     if (currentGuess === userChoice) {
       onGameOver(guessRounds);
     }
+
+    const updateState = () => {
+      setIsSmallScreen(Dimensions.get("window").height < 500);
+    };
+
+    Dimensions.addEventListener("change", updateState);
+
+    () => {
+      Dimensions.removeEventListener("change", updateState);
+    };
   }, [currentGuess, userChoice]);
 
   const handleNextGuess = direction => {
@@ -71,15 +82,29 @@ const GameScreen = ({ userChoice, onGameOver }) => {
   return (
     <View style={styles.container}>
       <Text>Opponent's Guess</Text>
-      <NumberContainer>{currentGuess}</NumberContainer>
-      <Card style={styles.btnContainer}>
-        <MyButton onPress={() => handleNextGuess("lower")}>
-          <Ionicons name="ios-remove" size={24} />
-        </MyButton>
-        <MyButton onPress={() => handleNextGuess("greater")}>
-          <Ionicons name="ios-add" size={24} />
-        </MyButton>
-      </Card>
+      {isSmallScreen ? (
+        <View style={styles.btnContainerSmall}>
+          <MyButton onPress={() => handleNextGuess("lower")}>
+            <Ionicons name="ios-remove" size={24} />
+          </MyButton>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <MyButton onPress={() => handleNextGuess("greater")}>
+            <Ionicons name="ios-add" size={24} />
+          </MyButton>
+        </View>
+      ) : (
+        <>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <Card style={styles.btnContainer}>
+            <MyButton onPress={() => handleNextGuess("lower")}>
+              <Ionicons name="ios-remove" size={24} />
+            </MyButton>
+            <MyButton onPress={() => handleNextGuess("greater")}>
+              <Ionicons name="ios-add" size={24} />
+            </MyButton>
+          </Card>
+        </>
+      )}
       <View style={styles.listContainer}>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -127,6 +152,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     borderRadius: 3
+  },
+  btnContainerSmall: {
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
   }
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -22,10 +22,27 @@ const StartGameScreen = ({ onStartGame }) => {
   const [inputValue, setInputValue] = useState("");
   const [enteredNumber, setEnteredNumber] = useState(0);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [buttonWidth, setButtonWidth] = useState({
+    width: Dimensions.get("window").width / 4
+  });
 
   const handleTextChange = text => {
-    setInputValue(state => text.replace(/[^0-9]/g, ""));
+    setInputValue(text.replace(/[^0-9]/g, ""));
   };
+
+  useEffect(() => {
+    const updateState = () => {
+      setButtonWidth({
+        width: Dimensions.get("window").width / 4
+      });
+    };
+
+    Dimensions.addEventListener("change", updateState);
+
+    return () => {
+      Dimensions.removeEventListener("change", updateState);
+    };
+  });
 
   // Closes the keyboard when Touchable Opacity Presses somewhere in the program
   const dismissKeyboard = () => Keyboard.dismiss();
@@ -72,14 +89,14 @@ const StartGameScreen = ({ onStartGame }) => {
                 onChangeText={handleTextChange}
               />
               <View style={styles.buttonContainer}>
-                <View style={styles.btn}>
+                <View style={buttonWidth}>
                   <Button
                     title="Reset"
                     onPress={resetInput}
                     color={colors.accent}
                   />
                 </View>
-                <View style={styles.btn}>
+                <View style={buttonWidth}>
                   <Button
                     onPress={confirmHandler}
                     title="Confirm"
@@ -124,9 +141,6 @@ const styles = StyleSheet.create({
     maxWidth: "90%",
     minWidth: 250,
     alignItems: "center"
-  },
-  btn: {
-    width: Dimensions.get("window").width / 4
   },
   input: {
     width: 100,
