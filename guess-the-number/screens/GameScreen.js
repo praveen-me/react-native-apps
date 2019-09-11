@@ -39,17 +39,19 @@ const GameScreen = ({ userChoice, onGameOver }) => {
     if (currentGuess === userChoice) {
       onGameOver(guessRounds);
     }
+  }, [currentGuess, userChoice]);
 
+  useEffect(() => {
     const updateState = () => {
       setIsSmallScreen(Dimensions.get("window").height < 500);
     };
 
     Dimensions.addEventListener("change", updateState);
 
-    () => {
+    return () => {
       Dimensions.removeEventListener("change", updateState);
     };
-  }, [currentGuess, userChoice]);
+  });
 
   const handleNextGuess = direction => {
     if (
