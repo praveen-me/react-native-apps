@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList
-} from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTile from "../components/CategoryGridTile";
 
@@ -34,6 +28,7 @@ const CategoriesScreen = ({ navigation }) => {
         data={CATEGORIES}
         renderItem={renderCategories}
         numColumns={2}
+        contentContainerStyle={styles.list}
       />
     </View>
   );
@@ -42,6 +37,10 @@ const CategoriesScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1
+  },
+  list: {
+    marginVertical: 10,
+    paddingBottom: 20
   }
 });
 

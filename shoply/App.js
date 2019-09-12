@@ -10,7 +10,9 @@ useScreens();
 const loadFonts = () =>
   Font.loadAsync({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf")
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    roboto: require("./assets/fonts/Roboto-Regular.ttf"),
+    robotoBold: require("./assets/fonts/Roboto-Bold.ttf")
   });
 
 export default function App() {

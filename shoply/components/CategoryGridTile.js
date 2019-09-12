@@ -1,23 +1,56 @@
 import React from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  TouchableNativeFeedback,
+  Platform
+} from "react-native";
 
 const CategoryGridTile = ({ category, onSelect }) => {
+  const { color, id, title } = category.item;
+
+  let TouchableCmp = TouchableOpacity;
+
+  if (Platform.OS === "android" && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+  }
+
   return (
-    <TouchableOpacity
-      style={styles.gridItem}
-      onPress={() => onSelect(category.item.id)}>
-      <View style={styles.gridItem}>
-        <Text>{category.item.title}</Text>
+    <TouchableCmp style={styles.gridItem} onPress={() => onSelect(id)}>
+      <View style={{ ...styles.container, backgroundColor: color }}>
+        <Text style={styles.text} numberOfLines={2}>
+          {title}
+        </Text>
       </View>
-    </TouchableOpacity>
+    </TouchableCmp>
   );
 };
 
 const styles = StyleSheet.create({
   gridItem: {
+    flex: 1
+  },
+  container: {
     flex: 1,
-    margin: 15,
-    height: 150
+    height: 150,
+    margin: 25,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    padding: 15,
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOpacity: 0.26,
+    shadowOffset: {
+      width: 2,
+      height: 2
+    },
+    elevation: 5
+  },
+  text: {
+    fontSize: 18,
+    fontFamily: "roboto"
   }
 });
 
