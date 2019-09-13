@@ -25,6 +25,7 @@ const CategoryMealScreen = ({ navigation }) => {
         keyExtractor={item => item.id}
         renderItem={renderMeals}
         style={{ width: "100%" }}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

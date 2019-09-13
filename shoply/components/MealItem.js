@@ -18,7 +18,11 @@ const MealItem = ({ meal }) => {
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground source={{ uri: imageUrl }} style={styles.imgBg}>
-              {/* <Text>{title}</Text> */}
+              <View style={styles.titleContainer}>
+                <Text style={styles.title} numberOfLines={1}>
+                  {title}
+                </Text>
+              </View>
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetails }}>
@@ -36,17 +40,38 @@ const styles = StyleSheet.create({
   mealItem: {
     height: 200,
     width: "100%",
-    backgroundColor: "#ccc"
+    backgroundColor: "#f5f5f5",
+    marginVertical: 25,
+    borderRadius: 12,
+    overflow: "hidden"
   },
   mealRow: {
     flexDirection: "row"
   },
+  mealHeader: {
+    height: "85%"
+  },
   mealDetails: {
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    height: "15%"
   },
   imgBg: {
     width: "100%",
-    height: 200
+    height: "100%",
+    justifyContent: "flex-end"
+  },
+  title: {
+    fontFamily: "robotoBold",
+    fontSize: 20,
+    color: "#fff",
+    textAlign: "center"
+  },
+  titleContainer: {
+    backgroundColor: "rgba(0, 0, 0, .5)",
+    paddingVertical: 5,
+    paddingHorizontal: 12
   }
 });
 
