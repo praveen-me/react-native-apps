@@ -7,14 +7,12 @@ import {
   ImageBackground
 } from "react-native";
 
-const MealItem = ({ meal }) => {
-  const { title, duration, affordability, complexity, imageUrl } = meal;
-
-  console.log(imageUrl);
+const MealItem = ({ meal, onMealPress }) => {
+  const { title, duration, affordability, complexity, imageUrl, id } = meal;
 
   return (
     <View style={styles.mealItem}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => onMealPress(id)}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground source={{ uri: imageUrl }} style={styles.imgBg}>

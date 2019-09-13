@@ -14,8 +14,17 @@ const CategoryMealScreen = ({ navigation }) => {
     meal.categoryIds.includes(currentCategory.id)
   );
 
+  const onMealPress = mealId => {
+    navigation.navigate({
+      routeName: "MealDetails",
+      params: {
+        mealId
+      }
+    });
+  };
+
   const renderMeals = meal => {
-    return <MealItem meal={meal.item} />;
+    return <MealItem meal={meal.item} onMealPress={onMealPress} />;
   };
 
   return (
