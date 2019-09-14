@@ -2,6 +2,9 @@ import React from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTile from "../components/CategoryGridTile";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../components/HeaderButton";
+import MenuButton from "../components/MenuButton";
 
 const _keyExtractor = item => item.id;
 
@@ -32,6 +35,12 @@ const CategoriesScreen = ({ navigation }) => {
       />
     </View>
   );
+};
+
+CategoriesScreen.navigationOptions = navOptions => {
+  return {
+    headerLeft: <MenuButton navOptions={navOptions} />
+  };
 };
 
 const styles = StyleSheet.create({
