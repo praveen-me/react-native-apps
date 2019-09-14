@@ -44,7 +44,7 @@ const FavStackNavigator = createStackNavigator(
     Favourites: {
       screen: FavouritesScreen,
       navigationOptions: {
-        headerTitle: "Favourites"
+        headerTitle: "Your Favourites"
       }
     },
     MealDetail: MealDetailsScreen
