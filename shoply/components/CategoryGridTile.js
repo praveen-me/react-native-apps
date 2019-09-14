@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     shadowColor: "black",
-    shadowOpacity: 0.26,
+    shadowOpacity: 0.16,
     shadowOffset: {
-      width: 2,
-      height: 2
+      width: 10,
+      height: 10
     },
-    elevation: 5
+    elevation: 15
   },
   text: {
     fontSize: 18,

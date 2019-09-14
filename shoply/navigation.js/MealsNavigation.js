@@ -1,31 +1,82 @@
+import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealScreen from "../screens/CategoryMealsScreen";
 import MealDetailsScreen from "../screens/MealDetailsScreen";
-import Colors from '../constants/Colors';
+import FavouritesScreen from "../screens/FavouritesScreen";
+import Colors from "../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { Platform } from "@unimodules/core";
 
-const MealsNavigation = createStackNavigator({
-  Categories: {
-		screen: CategoriesScreen,
-		navigationOptions : {
-			title: "Categories Meal",
-		}
-	},
-  CategoryMeal: CategoryMealScreen,
-  MealDetails: MealDetailsScreen
-}, {
-	defaultNavigationOptions : {
-		headerStyle: {
-			backgroundColor: Colors.accent
-		},
-		headerTintColor: "#fff",
-		headerTitleStyle: {
-			fontFamily: "open-sans",
-			textAlign: "center",
-			flex: 1
-		}
-	}
-});
+const MealsNavigation = createStackNavigator(
+  {
+    Categories: {
+      screen: CategoriesScreen,
+      navigationOptions: {
+        title: "Categories Meal"
+      }
+    },
+    CategoryMeal: CategoryMealScreen,
+    MealDetails: MealDetailsScreen
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Colors.accent
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontFamily: "open-sans",
+        textAlign: "center",
+        flex: 1
+      }
+    }
+  }
+);
 
-export default createAppContainer(MealsNavigation);
+const tabScreenConfig = {
+  Meals: {
+    screen: MealsNavigation,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return (
+          <Ionicons name="ios-restaurant" size={25} color={tabInfo.tintColor} />
+        );
+      }
+    }
+  },
+  Favorite: {
+    screen: FavouritesScreen,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
+      }
+    }
+  }
+};
+
+const FavMealTabNavigator =
+  Platform.OS === "android"
+    ? createMaterialBottomTabNavigator(tabScreenConfig, {
+        activeTintColor: "tomato",
+        shifting: true
+      })
+    : createBottomTabNavigator(tabScreenConfig, {
+        tabBarOptions: {
+          activeTintColor: "tomato",
+          inactiveTintColor: "black",
+          labelStyle: {
+            fontSize: 16
+          },
+          style: {
+            backgroundColor: "#eee",
+            alignItems: "center",
+            justifyContent: "center"
+          }
+        }
+      });
+
+export default createAppContainer(FavMealTabNavigator);
