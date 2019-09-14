@@ -11,6 +11,18 @@ import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "@unimodules/core";
 
+const defaultNavOptions = {
+  headerStyle: {
+    backgroundColor: Colors.accent
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontFamily: "open-sans",
+    textAlign: "center",
+    flex: 1
+  }
+};
+
 const MealsNavigation = createStackNavigator(
   {
     Categories: {
@@ -23,17 +35,22 @@ const MealsNavigation = createStackNavigator(
     MealDetails: MealDetailsScreen
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Colors.accent
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontFamily: "open-sans",
-        textAlign: "center",
-        flex: 1
+    defaultNavigationOptions: defaultNavOptions
+  }
+);
+
+const FavStackNavigator = createStackNavigator(
+  {
+    Favourites: {
+      screen: FavouritesScreen,
+      navigationOptions: {
+        headerTitle: "Favourites"
       }
-    }
+    },
+    MealDetail: MealDetailsScreen
+  },
+  {
+    defaultNavigationOptions: defaultNavOptions
   }
 );
 
@@ -49,7 +66,7 @@ const tabScreenConfig = {
     }
   },
   Favorite: {
-    screen: FavouritesScreen,
+    screen: FavStackNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
@@ -62,7 +79,10 @@ const FavMealTabNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
         activeTintColor: "tomato",
-        shifting: true
+        shifting: true,
+        barStyle: {
+          backgroundColor: Colors.accent
+        }
       })
     : createBottomTabNavigator(tabScreenConfig, {
         tabBarOptions: {
