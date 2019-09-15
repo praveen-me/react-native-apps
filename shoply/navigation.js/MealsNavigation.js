@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -12,6 +13,14 @@ import FiltersScreen from "../screens/FiltersScreen";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "@unimodules/core";
+
+const TabAndroidHeader = ({ title }) => (
+  <Text style={{ fontWeight: "bold" }}>{title}</Text>
+);
+
+const TabHeaderIcon = ({ iconName, tabInfo }) => (
+  <Ionicons name={iconName} size={25} color={tabInfo.tintColor} />
+);
 
 const defaultNavOptions = {
   headerStyle: {
@@ -60,19 +69,19 @@ const tabScreenConfig = {
   Meals: {
     screen: MealsNavigation,
     navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return (
-          <Ionicons name="ios-restaurant" size={25} color={tabInfo.tintColor} />
-        );
-      }
+      tabBarIcon: tabInfo => (
+        <TabHeaderIcon iconName="ios-restaurant" tabInfo={tabInfo} />
+      ),
+      tabBarLabel: <TabAndroidHeader title="Meals" />
     }
   },
   Favorite: {
     screen: FavStackNavigator,
     navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
-      }
+      tabBarIcon: tabInfo => (
+        <TabHeaderIcon iconName="ios-star" tabInfo={tabInfo} />
+      ),
+      tabBarLabel: <TabAndroidHeader title="Favorites" />
     }
   }
 };
@@ -92,7 +101,6 @@ const FavMealTabNavigator =
           inactiveTintColor: "black",
           labelStyle: {
             fontSize: 16,
-
             fontFamily: "robotoBold"
           },
           style: {
