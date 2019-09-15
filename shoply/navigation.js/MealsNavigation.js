@@ -19,7 +19,7 @@ const defaultNavOptions = {
   },
   headerTintColor: "#fff",
   headerTitleStyle: {
-    fontFamily: "open-sans",
+    fontFamily: "robotoBold",
     textAlign: "center",
     flex: 1
   }
@@ -91,7 +91,9 @@ const FavMealTabNavigator =
           activeTintColor: "tomato",
           inactiveTintColor: "black",
           labelStyle: {
-            fontSize: 16
+            fontSize: 16,
+
+            fontFamily: "robotoBold"
           },
           style: {
             backgroundColor: "#eee",
@@ -110,9 +112,24 @@ const FilterNavigator = createStackNavigator(
   }
 );
 
-const MainNavigator = createDrawerNavigator({
-  MealsFav: FavMealTabNavigator,
-  Filters: FilterNavigator
-});
+const MainNavigator = createDrawerNavigator(
+  {
+    MealsFav: {
+      screen: FavMealTabNavigator,
+      navigationOptions: {
+        drawerLabel: "Meals"
+      }
+    },
+    Filters: FilterNavigator
+  },
+  {
+    contentOptions: {
+      activeTintColor: "tomato",
+      labelStyle: {
+        fontFamily: "roboto"
+      }
+    }
+  }
+);
 
 export default createAppContainer(MainNavigator);
