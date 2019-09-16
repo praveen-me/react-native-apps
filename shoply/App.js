@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
+import { Provider } from "react-redux";
 
 import MealsNavigation from "./navigation.js/MealsNavigation";
+import store from "./store/store";
 
 useScreens();
 
@@ -27,5 +29,9 @@ export default function App() {
     );
   }
 
-  return <MealsNavigation />;
+  return (
+    <Provider store={store}>
+      <MealsNavigation />
+    </Provider>
+  );
 }
