@@ -3,11 +3,13 @@ import { View, StyleSheet, FlatList } from "react-native";
 import MealItem from "./MealItem";
 
 const MealList = ({ meals, navigation }) => {
-  const onMealPress = mealId => {
+  const onMealPress = (mealId, mealTitle, isFavorite) => {
     navigation.navigate({
       routeName: "MealDetails",
       params: {
-        mealId
+        mealId,
+        mealTitle,
+        isFavorite
       }
     });
   };

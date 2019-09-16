@@ -7,13 +7,18 @@ import {
   ImageBackground
 } from "react-native";
 import DefaultText from "./DefaultText";
+import { useSelector } from "react-redux";
 
 const MealItem = ({ meal, onMealPress }) => {
   const { title, duration, affordability, complexity, imageUrl, id } = meal;
 
+  const favoriteMeals = useSelector(state => state.meals.favoriteMeals);
+
+  const isFavorite = favoriteMeals.some(meal => meal.id === id);
+
   return (
     <View style={styles.mealItem}>
-      <TouchableOpacity onPress={() => onMealPress(id)}>
+      <TouchableOpacity onPress={() => onMealPress(id, title, isFavorite)}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground source={{ uri: imageUrl }} style={styles.imgBg}>

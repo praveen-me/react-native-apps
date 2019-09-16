@@ -1,10 +1,12 @@
 import React from "react";
 import MealList from "../components/MealList";
-import { MEALS } from "../data/dummy-data";
+import { useSelector } from "react-redux";
 import MenuButton from "../components/MenuButton";
 
 const FavouritesScreen = ({ navigation }) => {
-  return <MealList meals={MEALS} navigation={navigation} />;
+  const meals = useSelector(state => state.meals.favoriteMeals);
+
+  return <MealList meals={meals} navigation={navigation} />;
 };
 
 FavouritesScreen.navigationOptions = navOptions => {
