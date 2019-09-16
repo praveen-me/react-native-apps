@@ -18,7 +18,7 @@ const mealReducer = (state = initState, action) => {
       if (mealIndex !== -1) {
         favoriteMeals = favoriteMeals.filter(meal => meal.id !== mealId);
       } else {
-        favoriteMeals.push(state.meals[mealIndex]);
+        favoriteMeals.push(state.meals.find(meal => meal.id === mealId));
       }
       return {
         ...state,
