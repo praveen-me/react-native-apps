@@ -1,5 +1,5 @@
 import { MEALS } from "../../data/dummy-data";
-import { TOGGLE_FAVORITE } from "../types";
+import { TOGGLE_FAVORITE, SET_FILTERS } from "../types";
 
 const initState = {
   meals: MEALS,
@@ -13,16 +13,42 @@ const mealReducer = (state = initState, action) => {
       const { mealId } = action.payload;
       let favoriteMeals = [...state.favoriteMeals];
 
-      if (favoriteMeals.findIndex(meal => meal.id === mealId) !== -1) {
+      const mealIndex = favoriteMeals.findIndex(meal => meal.id === mealId);
+
+      if (mealIndex !== -1) {
         favoriteMeals = favoriteMeals.filter(meal => meal.id !== mealId);
       } else {
-        const meal = state.meals.find(meal => meal.id === mealId);
-
-        favoriteMeals.push(meal);
+        favoriteMeals.push(state.meals[mealIndex]);
       }
       return {
         ...state,
         favoriteMeals
+      };
+    }
+
+    case SET_FILTERS: {
+      const { filterSettings } = action.payload;
+      let myFilterMeals;
+      const keys = Object.keys(filterSettings);
+
+      const isNoFiltersApplied = keys.every(
+        key => filterSettings[key] === false
+      );
+
+      if (isNoFiltersApplied) {
+        myFilterMeals = state.meals;
+      } else {
+        myFilterMeals = state.meals.filter((meal, i) => {
+          for (const filter in filterSettings) {
+            if (filterSettings[filter] && meal[filter]) return true;
+          }
+          return false;
+        });
+      }
+
+      return {
+        ...state,
+        filteredMeals: myFilterMeals
       };
     }
 
