@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ScrollView, View, Text, StyleSheet, Switch } from "react-native";
 import MenuButton from "../components/MenuButton";
 import Colors from "../constants/Colors";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../components/HeaderButton";
 
 const FilterSwitch = ({ label, state, handleValueChange }) => {
   return (
@@ -17,7 +19,7 @@ const FilterSwitch = ({ label, state, handleValueChange }) => {
   );
 };
 
-const FiltersScreen = () => {
+const FiltersScreen = ({ navigation }) => {
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
@@ -30,6 +32,22 @@ const FiltersScreen = () => {
   const handleVeganChange = () => setIsVegan(!isVegan);
 
   const handleVegetarianChange = () => setIsVegetarian(!isVegetarian);
+
+  const saveFilters = useCallback(
+    () => ({
+      glutenFree: isGlutenFree,
+      lactoseFree: isLactoseFree,
+      vegan: isVegan,
+      vegetarian: isVegetarian
+    }),
+    [isGlutenFree, isLactoseFree, isVegan, isVegetarian]
+  );
+
+  useEffect(() => {
+    navigation.setParams({
+      save: saveFilters
+    });
+  }, [saveFilters]);
 
   return (
     <ScrollView>
@@ -63,7 +81,16 @@ const FiltersScreen = () => {
 FiltersScreen.navigationOptions = navOptions => {
   return {
     headerTitle: "Filter Meals",
-    headerLeft: <MenuButton navOptions={navOptions} />
+    headerLeft: <MenuButton navOptions={navOptions} />,
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-save"
+          onPress={navOptions.navigation.getParam("save")}
+        />
+      </HeaderButtons>
+    )
   };
 };
 
