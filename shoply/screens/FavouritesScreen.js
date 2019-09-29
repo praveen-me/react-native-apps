@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import MealList from "../components/MealList";
 import { useSelector } from "react-redux";
 import MenuButton from "../components/MenuButton";
