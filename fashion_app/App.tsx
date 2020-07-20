@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
-    fontWeight: '400',
     color: Colors.dark,
+    fontFamily: 'Roboto-Medium',
   },
   highlight: {
     fontWeight: '700',

@@ -17,7 +17,11 @@
 		2DCD954D1E0B4F2C00145EB5 /* fashion_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* fashion_appTests.m */; };
 		6DE1035BF7DE317FE9E328C2 /* libPods-fashion_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B32E30124374EF66F22F144 /* libPods-fashion_app.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9F3901B5A523422A81777BE7 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60EA9033795C428FA9A53430 /* Roboto-Medium.ttf */; };
+		A2B30DE424C5F0D2007092E1 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = A2B30DE324C5F0D2007092E1 /* ios */; };
+		ACAF8E765F354269AB35756F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3A240CEAA4C44639074AA0D /* Roboto-Bold.ttf */; };
 		C5A2E9E15985BB9A5A338FCD /* libPods-fashion_app-fashion_appTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F36FD6641BD6D81442298FE /* libPods-fashion_app-fashion_appTests.a */; };
+		D5B5825F48734C60A08A6DE4 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDCA53DB6B6041B6B87E86A5 /* Roboto-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,13 +56,17 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = fashion_app/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* fashion_app-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fashion_app-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* fashion_app-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fashion_app-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60EA9033795C428FA9A53430 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = fashion_app/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		920AE01196CF291853BA329C /* Pods-fashion_app-fashion_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fashion_app-fashion_appTests.release.xcconfig"; path = "Target Support Files/Pods-fashion_app-fashion_appTests/Pods-fashion_app-fashion_appTests.release.xcconfig"; sourceTree = "<group>"; };
+		A2B30DE324C5F0D2007092E1 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; sourceTree = "<group>"; };
 		A73D6623F5213E78782B8867 /* Pods-fashion_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fashion_app.release.xcconfig"; path = "Target Support Files/Pods-fashion_app/Pods-fashion_app.release.xcconfig"; sourceTree = "<group>"; };
 		D5B2C53165757B8DB1E88994 /* Pods-fashion_app-fashion_appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fashion_app-fashion_appTests.debug.xcconfig"; path = "Target Support Files/Pods-fashion_app-fashion_appTests/Pods-fashion_app-fashion_appTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E3A240CEAA4C44639074AA0D /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3E913972B31574447799D3B /* Pods-fashion_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fashion_app.debug.xcconfig"; path = "Target Support Files/Pods-fashion_app/Pods-fashion_app.debug.xcconfig"; sourceTree = "<group>"; };
+		FDCA53DB6B6041B6B87E86A5 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		69944CE3AE5A4D3080A5B429 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2B30DE324C5F0D2007092E1 /* ios */,
+				E3A240CEAA4C44639074AA0D /* Roboto-Bold.ttf */,
+				60EA9033795C428FA9A53430 /* Roboto-Medium.ttf */,
+				FDCA53DB6B6041B6B87E86A5 /* Roboto-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +172,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				896751923113820FB4EA36BE /* Pods */,
+				69944CE3AE5A4D3080A5B429 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -178,7 +198,6 @@
 				D5B2C53165757B8DB1E88994 /* Pods-fashion_app-fashion_appTests.debug.xcconfig */,
 				920AE01196CF291853BA329C /* Pods-fashion_app-fashion_appTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -322,8 +341,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B30DE424C5F0D2007092E1 /* ios in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				ACAF8E765F354269AB35756F /* Roboto-Bold.ttf in Resources */,
+				9F3901B5A523422A81777BE7 /* Roboto-Medium.ttf in Resources */,
+				D5B5825F48734C60A08A6DE4 /* Roboto-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
