@@ -1,30 +1,58 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, Dimensions} from 'react-native';
-import Slide from './Slide';
+import {View, StyleSheet, Dimensions} from 'react-native';
+import Slide, {SLIDE_HEIGHT} from './Slide';
+import Animated from 'react-native-reanimated';
+import {useValue, interpolateColor, onScrollEvent} from 'react-native-redash';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
+
+const slides = [
+  {
+    label: 'Relaxed',
+    color: '#BFEAF5',
+  },
+  {
+    label: 'Playful',
+    color: '#BEECC4',
+  },
+  {
+    label: 'Excentric',
+    color: '#FFEAD9',
+  },
+  {
+    label: 'Funky',
+    color: '#FFDDDD',
+  },
+];
 
 const Onboarding = () => {
+  const x = useValue(0);
+  const onScroll = onScrollEvent({x});
+  const backgroundColor = interpolateColor(x, {
+    inputRange: slides.map((_, i) => i * width),
+    outputRange: slides.map((slide) => slide.color),
+  });
   return (
     <View style={styles.container}>
-      <View style={styles.slider}>
-        <ScrollView
+      <Animated.View style={[styles.slider, {backgroundColor}]}>
+        <Animated.ScrollView
           horizontal
           snapToInterval={width}
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
-          bounces={false}>
-          <Slide label={'Relaxed'} />
-          <Slide label={'Playful'} right />
-          <Slide label={'Excentric'} />
-          <Slide label={'Funky'} right />
-        </ScrollView>
-      </View>
+          bounces={false}
+          scrollEventThrottle={1}
+          {...{onScroll}}>
+          {slides.map((slide, index) => (
+            <Slide key={index} label={slide.label} right={Boolean(index % 2)} />
+          ))}
+        </Animated.ScrollView>
+      </Animated.View>
       <View style={styles.footer}>
-        <View
+        <Animated.View
           style={{
             ...StyleSheet.absoluteFillObject,
-            backgroundColor: 'cyan',
+            backgroundColor,
           }}
         />
         <View
@@ -41,8 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   slider: {
-    height: height * 0.61,
-    backgroundColor: 'cyan',
+    height: SLIDE_HEIGHT,
     borderBottomRightRadius: 75,
   },
   footer: {
