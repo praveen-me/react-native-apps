@@ -7,7 +7,7 @@ import {Onboarding} from './src/containers/Authentication';
 const AuthNavigatorStack = createStackNavigator();
 const AuthNavigator = () => {
   return (
-    <AuthNavigatorStack.Navigator>
+    <AuthNavigatorStack.Navigator headerMode="none">
       <AuthNavigatorStack.Screen name={'Onboarding'} component={Onboarding} />
     </AuthNavigatorStack.Navigator>
   );
