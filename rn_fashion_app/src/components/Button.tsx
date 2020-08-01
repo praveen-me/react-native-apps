@@ -7,16 +7,17 @@ import AppText from './Text';
 interface ButtonProps {
   label: string;
   variant: 'default' | 'primary';
+  onPress: () => void;
 }
 
-const Button = ({label, variant = 'default'}: ButtonProps) => {
+const Button = ({label, variant = 'default', onPress}: ButtonProps) => {
   const backgroundColor =
     variant === 'primary' ? colors.primatyBtnBg : colors.secondaryBg;
 
   const color = variant === 'primary' ? colors.white : colors.textPrimaryColor;
 
   return (
-    <RectButton style={[styles.container, {backgroundColor}]}>
+    <RectButton style={[styles.container, {backgroundColor}]} onPress={onPress}>
       <AppText medium style={[styles.label, {color}]}>
         {label}
       </AppText>
