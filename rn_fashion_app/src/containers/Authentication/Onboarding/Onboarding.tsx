@@ -17,6 +17,7 @@ const slides = [
     subTitle: 'Find your Outfits',
     description:
       "Confused about your outfit? Don't worry! Find the best outfit here!",
+    picture: require('./../../../assets/images/1.png'),
   },
   {
     title: 'Playful',
@@ -24,6 +25,7 @@ const slides = [
     subTitle: 'Hear it First, Wear it First',
     description:
       'Hating the clothes in your wardrobe? Explore hundreds of the outfit ideas',
+    picture: require('./../../../assets/images/2.png'),
   },
   {
     title: 'Excentric',
@@ -31,6 +33,7 @@ const slides = [
     subTitle: 'Your Style, Your Way',
     description:
       'Create your individual & unique style and look amazing everyday',
+    picture: require('./../../../assets/images/3.png'),
   },
   {
     title: 'Funky',
@@ -38,6 +41,7 @@ const slides = [
     subTitle: 'Look Good, Feel Good',
     description:
       'Discover the latest trends in fashion and explore your personality',
+    picture: require('./../../../assets/images/4.png'),
   },
 ];
 
@@ -70,7 +74,12 @@ const Onboarding = () => {
           bounces={false}
           {...scrollHandler}>
           {slides.map((slide, index) => (
-            <Slide key={index} label={slide.title} right={Boolean(index % 2)} />
+            <Slide
+              key={index}
+              label={slide.title}
+              picture={slide.picture}
+              right={Boolean(index % 2)}
+            />
           ))}
         </Animated.ScrollView>
       </Animated.View>
