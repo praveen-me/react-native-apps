@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text as RNText} from 'react-native';
+import {Text} from '../contants/theme';
 import fonts from '../contants/fonts';
 
 interface TextProps {
@@ -7,6 +7,7 @@ interface TextProps {
   bold?: boolean;
   medium?: boolean;
   style?: object | Array<object>;
+  variant?: string;
 }
 
 const AppText = ({
@@ -14,6 +15,7 @@ const AppText = ({
   style = [],
   medium = false,
   bold = false,
+  variant = 'body',
 }: TextProps) => {
   const internalStyles = {
     fontFamily: fonts.normal,
@@ -29,7 +31,11 @@ const AppText = ({
     ? [...style, internalStyles]
     : {...style, ...internalStyles};
 
-  return <RNText style={textStyles}>{children}</RNText>;
+  return (
+    <Text variant={variant} style={textStyles}>
+      {children}
+    </Text>
+  );
 };
 
 export default AppText;

@@ -16,10 +16,12 @@ interface SlideProps {
 const SubSlide = ({description, subTitle, last, onPress}: SlideProps) => {
   return (
     <View style={styles.container}>
-      <AppText medium style={styles.subTitle}>
+      <AppText medium style={styles.subTitle} variant="title2">
         {subTitle}
       </AppText>
-      <AppText style={styles.description}>{description}</AppText>
+      <AppText variant="body" style={styles.description}>
+        {description}
+      </AppText>
 
       <Button
         label={last ? "Let's get started" : 'Next'}
@@ -39,16 +41,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   subTitle: {
-    fontSize: 24,
-    color: '#0C0D34',
-    textAlign: 'center',
-    lineHeight: 30,
     marginBottom: 20,
   },
   description: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#0C0D34',
     textAlign: 'center',
     marginBottom: 40,
   },

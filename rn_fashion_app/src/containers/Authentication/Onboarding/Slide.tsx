@@ -24,7 +24,7 @@ const Slide = ({label, right, picture}: SlideProps) => {
         <Image source={picture} style={styles.picture} />
       </View>
       <View style={[styles.titleContainer, {transform}]}>
-        <AppText bold style={styles.title}>
+        <AppText bold variant="hero">
           {label}
         </AppText>
       </View>
@@ -35,12 +35,6 @@ const Slide = ({label, right, picture}: SlideProps) => {
 const styles = StyleSheet.create({
   container: {
     width,
-  },
-  title: {
-    fontSize: 80,
-    color: 'white',
-    textAlign: 'center',
-    lineHeight: 80,
   },
   titleContainer: {
     height: 100,
