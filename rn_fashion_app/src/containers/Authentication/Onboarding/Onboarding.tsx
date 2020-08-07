@@ -11,6 +11,10 @@ import {interpolateColor, useScrollHandler} from 'react-native-redash';
 import SubSlide from './SubSlide';
 import Dot from '../../../components/Dot';
 import theme from '../../../contants/theme';
+import {
+  Routes,
+  StackNavigationProps,
+} from '../../../lib/navigation/rootNavigation';
 
 const {width} = Dimensions.get('window');
 
@@ -65,7 +69,9 @@ const slides = [
   },
 ];
 
-const Onboarding = () => {
+const Onboarding = ({
+  navigation,
+}: StackNavigationProps<Routes, 'Onboarding'>) => {
   const scroll = useRef<Animated.ScrollView>(null);
   const {scrollHandler, x} = useScrollHandler();
 
@@ -119,12 +125,7 @@ const Onboarding = () => {
           bounces={false}
           {...scrollHandler}>
           {slides.map((slide, index) => (
-            <Slide
-              key={index}
-              label={slide.title}
-              picture={slide.picture}
-              right={Boolean(index % 2)}
-            />
+            <Slide key={index} label={slide.title} right={Boolean(index % 2)} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
@@ -152,7 +153,13 @@ const Onboarding = () => {
                 key={index}
                 {...{description, subTitle}}
                 last={index === slides.length - 1}
-                onPress={() => onPress(index)}
+                onPress={() => {
+                  if (index === slides.length - 1) {
+                    navigation.navigate('Welcome');
+                  } else {
+                    onPress(index);
+                  }
+                }}
               />
             ))}
           </Animated.View>
