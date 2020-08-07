@@ -5,4 +5,5 @@ export default {
   white: '#fff',
   bodyText: 'rgba(12, 13, 53, .7)',
   grey: 'rgba(12, 13, 52, .5)',
+  'slide.grey': '#F4F0EF',
 };

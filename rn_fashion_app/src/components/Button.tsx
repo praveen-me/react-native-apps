@@ -8,17 +8,20 @@ import AppText from './Text';
 
 interface ButtonProps {
   label: string;
-  variant: 'default' | 'primary';
+  variant?: 'default' | 'primary' | 'transparent';
   onPress: () => void;
 }
 
 const Button = ({label, variant = 'default', onPress}: ButtonProps) => {
   const theme = useTheme<Theme>();
 
-  const backgroundColor =
-    variant === 'primary'
-      ? theme.colors.primatyBtnBg
-      : theme.colors.secondaryBg;
+  let backgroundColor = theme.colors['slide.grey'];
+
+  if (variant === 'primary') {
+    backgroundColor = theme.colors.primatyBtnBg;
+  } else if (variant === 'transparent') {
+    backgroundColor = 'transapent';
+  }
 
   const color =
     variant === 'primary' ? theme.colors.white : theme.colors.textPrimaryColor;

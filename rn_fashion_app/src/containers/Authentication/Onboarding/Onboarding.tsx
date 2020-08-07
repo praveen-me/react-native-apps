@@ -148,20 +148,23 @@ const Onboarding = ({
               styles.footerSlides,
               {transform: [{translateX: multiply(x, -1)}]},
             ]}>
-            {slides.map(({description, subTitle}, index) => (
-              <SubSlide
-                key={index}
-                {...{description, subTitle}}
-                last={index === slides.length - 1}
-                onPress={() => {
-                  if (index === slides.length - 1) {
-                    navigation.navigate('Welcome');
-                  } else {
-                    onPress(index);
-                  }
-                }}
-              />
-            ))}
+            {slides.map(({description, subTitle}, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <SubSlide
+                  key={index}
+                  {...{description, subTitle}}
+                  last={last}
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate('Welcome');
+                    } else {
+                      onPress(index);
+                    }
+                  }}
+                />
+              );
+            })}
           </Animated.View>
         </Animated.View>
       </View>
