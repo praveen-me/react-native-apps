@@ -1,20 +1,7 @@
-import {BaseTheme, createText, createTheme} from '@shopify/restyle';
+import {createText, createTheme} from '@shopify/restyle';
 import colors from './colors';
 
-const palette = {
-  purpleLight: '#8C6FF7',
-  purplePrimary: '#5A31F4',
-  purpleDark: '#3F22AB',
-
-  greenLight: '#56DCBA',
-  greenPrimary: '#0ECD9D',
-  greenDark: '#0A906E',
-
-  black: '#0B0B0B',
-  white: '#F0F2F3',
-};
-
-const theme: BaseTheme = createTheme({
+const theme = createTheme({
   colors: {
     ...colors,
   },
@@ -44,6 +31,10 @@ const theme: BaseTheme = createTheme({
       fontSize: 16,
       color: 'bodyText',
       lineHeight: 24,
+    },
+    button: {
+      fontSize: 15,
+      color: 'bodyText',
     },
   },
   breakpoints: {},

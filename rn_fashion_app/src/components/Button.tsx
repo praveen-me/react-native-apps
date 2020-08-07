@@ -25,7 +25,7 @@ const Button = ({label, variant = 'default', onPress}: ButtonProps) => {
 
   return (
     <RectButton style={[styles.container, {backgroundColor}]} onPress={onPress}>
-      <AppText medium style={[styles.label, {color}]}>
+      <AppText medium style={[{color}]} variant="button">
         {label}
       </AppText>
     </RectButton>

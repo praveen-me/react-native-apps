@@ -1,7 +1,12 @@
 import React, {useRef} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, Dimensions, Image} from 'react-native';
 import Slide, {SLIDE_HEIGHT} from './Slide';
-import Animated, {divide, multiply} from 'react-native-reanimated';
+import Animated, {
+  divide,
+  Extrapolate,
+  interpolate,
+  multiply,
+} from 'react-native-reanimated';
 import {interpolateColor, useScrollHandler} from 'react-native-redash';
 import SubSlide from './SubSlide';
 import Dot from '../../../components/Dot';
@@ -17,7 +22,11 @@ const slides = [
     subTitle: 'Find your Outfits',
     description:
       "Confused about your outfit? Don't worry! Find the best outfit here!",
-    picture: require('./../../../assets/images/1.png'),
+    picture: {
+      src: require('./../../../assets/images/1.png'),
+      width: 2513,
+      height: 3583,
+    },
   },
   {
     title: 'Playful',
@@ -25,7 +34,11 @@ const slides = [
     subTitle: 'Hear it First, Wear it First',
     description:
       'Hating the clothes in your wardrobe? Explore hundreds of the outfit ideas',
-    picture: require('./../../../assets/images/2.png'),
+    picture: {
+      src: require('./../../../assets/images/2.png'),
+      width: 2791,
+      height: 3744,
+    },
   },
   {
     title: 'Excentric',
@@ -33,7 +46,11 @@ const slides = [
     subTitle: 'Your Style, Your Way',
     description:
       'Create your individual & unique style and look amazing everyday',
-    picture: require('./../../../assets/images/3.png'),
+    picture: {
+      src: require('./../../../assets/images/3.png'),
+      width: 2738,
+      height: 3244,
+    },
   },
   {
     title: 'Funky',
@@ -41,7 +58,11 @@ const slides = [
     subTitle: 'Look Good, Feel Good',
     description:
       'Discover the latest trends in fashion and explore your personality',
-    picture: require('./../../../assets/images/4.png'),
+    picture: {
+      src: require('./../../../assets/images/4.png'),
+      width: 1757,
+      height: 2551,
+    },
   },
 ];
 
@@ -65,6 +86,30 @@ const Onboarding = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, {backgroundColor}]}>
+        {slides.map(({picture}, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+
+          return (
+            <Animated.View style={[styles.underlay, {opacity}]} key={index}>
+              <Image
+                source={picture.src}
+                style={{
+                  width: width - BORDER_RADIUS,
+                  height:
+                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
         <Animated.ScrollView
           ref={scroll}
           horizontal
@@ -144,6 +189,12 @@ const styles = StyleSheet.create({
   footerSlides: {
     width: width * slides.length,
     flexDirection: 'row',
+  },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    borderBottomRightRadius: BORDER_RADIUS,
   },
 });
 
