@@ -4,7 +4,6 @@ import AppText from '../../../components/Text';
 
 const {width, height} = Dimensions.get('window');
 export const SLIDE_HEIGHT = height * 0.61;
-const BORDER_RADIUS = 75;
 
 interface SlideProps {
   label: string;
