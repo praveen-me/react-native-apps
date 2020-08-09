@@ -1,9 +1,10 @@
 import React from 'react';
-import {Alert, Text} from 'react-native';
+import {Alert, StyleSheet, Text} from 'react-native';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 import AppText from '../../../components/Text';
 import theme, {Box} from '../../../contants/theme';
+import TextInput from '../components/Form/TextInput';
 import SocialLogin from '../components/SocialLogin';
 
 const Login = () => {
@@ -28,9 +29,33 @@ const Login = () => {
     </>
   );
 
+  const validateEmail = (email: string) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   return (
     <Container {...{footer}}>
-      <Text>Login Screen</Text>
+      <Box padding="xl">
+        <AppText
+          variant="title1"
+          center
+          medium
+          style={{marginBottom: theme.spacing.l}}>
+          Welcome Back
+        </AppText>
+        <AppText variant="body" center>
+          Use your credentials below and login to your account
+        </AppText>
+
+        <Box>
+          <TextInput
+            placeholder="Enter your email"
+            icon="mail"
+            validator={validateEmail}
+          />
+        </Box>
+      </Box>
     </Container>
   );
 };

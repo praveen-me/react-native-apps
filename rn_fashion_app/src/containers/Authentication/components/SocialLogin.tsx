@@ -27,7 +27,7 @@ const SocialIcon = ({children}: SocialIconProps) => {
 
 const SocialLogin = () => {
   return (
-    <Box flexDirection="row" justifyContent="center">
+    <Box flexDirection="row" justifyContent="center" marginVertical="l">
       <SocialIcon>
         <Facebook />
       </SocialIcon>

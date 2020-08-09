@@ -8,6 +8,7 @@ interface TextProps {
   medium?: boolean;
   style?: object | Array<object>;
   variant?: string;
+  center?: boolean;
 }
 
 const AppText = ({
@@ -16,6 +17,7 @@ const AppText = ({
   medium = false,
   bold = false,
   variant = 'body',
+  center = false,
 }: TextProps) => {
   const internalStyles = {
     fontFamily: fonts.normal,
@@ -32,7 +34,9 @@ const AppText = ({
     : {...style, ...internalStyles};
 
   return (
-    <Text variant={variant} style={textStyles}>
+    <Text
+      variant={variant}
+      style={[textStyles, {textAlign: center ? 'center' : 'auto'}]}>
       {children}
     </Text>
   );

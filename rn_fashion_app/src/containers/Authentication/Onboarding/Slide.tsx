@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     height: 100,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
