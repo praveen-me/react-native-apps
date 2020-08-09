@@ -1,24 +1,30 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Alert, Text} from 'react-native';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 import AppText from '../../../components/Text';
+import theme, {Box} from '../../../contants/theme';
 import SocialLogin from '../components/SocialLogin';
 
 const Login = () => {
   const footer = (
     <>
       <SocialLogin />
-      <View style={styles.container}>
-        <AppText style={{color: 'white'}}>Don't have an account? </AppText>
+      <Box flexDirection="row" justifyContent="center" marginVertical="m">
+        <AppText
+          style={{color: theme.colors.white, marginRight: theme.spacing.s}}>
+          Don't have an account?
+        </AppText>
         <Button
           variant="transparent"
-          onPress={() => {}}
+          onPress={() => {
+            Alert.alert('Signup code here');
+          }}
           textVariant="primary"
           textBtn>
           SignUp
         </Button>
-      </View>
+      </Box>
     </>
   );
 
@@ -28,13 +34,5 @@ const Login = () => {
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 15,
-  },
-});
 
 export default Login;
