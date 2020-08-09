@@ -7,12 +7,22 @@ import {Theme} from '../contants/theme';
 import AppText from './Text';
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   variant?: 'default' | 'primary' | 'transparent';
   onPress: () => void;
+  children?: string;
+  textVariant?: 'default' | 'primary' | 'transparent';
+  textBtn?: boolean;
 }
 
-const Button = ({label, variant = 'default', onPress}: ButtonProps) => {
+const Button = ({
+  label = '',
+  variant = 'default',
+  onPress = () => {},
+  children = '',
+  textVariant = 'default',
+  textBtn = false,
+}: ButtonProps) => {
   const theme = useTheme<Theme>();
 
   let backgroundColor = theme.colors['slide.grey'];
@@ -23,13 +33,27 @@ const Button = ({label, variant = 'default', onPress}: ButtonProps) => {
     backgroundColor = 'transapent';
   }
 
-  const color =
+  let color =
     variant === 'primary' ? theme.colors.white : theme.colors.textPrimaryColor;
 
+  color =
+    textVariant !== 'default'
+      ? textVariant === 'primary'
+        ? theme.colors.primatyBtnBg
+        : theme.colors.textPrimaryColor
+      : color;
+
+  const inlineStyles = {
+    backgroundColor,
+    height: textBtn ? 'auto' : 50,
+    width: textBtn ? 'auto' : 245,
+    borderRadius: textBtn ? 0 : 25,
+  };
+
   return (
-    <RectButton style={[styles.container, {backgroundColor}]} onPress={onPress}>
+    <RectButton style={[styles.container, inlineStyles]} onPress={onPress}>
       <AppText medium style={[{color}]} variant="button">
-        {label}
+        {label || children}
       </AppText>
     </RectButton>
   );
@@ -37,9 +61,6 @@ const Button = ({label, variant = 'default', onPress}: ButtonProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 25,
-    height: 50,
-    width: 245,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -34,7 +34,7 @@ const theme = createTheme({
   spacing: {
     s: 8,
     m: 16,
-    l: 24,
+    l: 22,
     xl: 40,
   },
   borderRadii: {

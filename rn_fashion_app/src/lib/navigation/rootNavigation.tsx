@@ -9,7 +9,7 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {Onboarding, Welcome} from '../../containers/Authentication';
+import {Login, Onboarding, Welcome} from '../../containers/Authentication';
 
 export interface StackNavigationProps<
   ParamList extends ParamListBase,
@@ -22,6 +22,7 @@ export interface StackNavigationProps<
 export type Routes = {
   Onboarding: undefined;
   Welcome: undefined;
+  Login: undefined;
 };
 
 const StackRoutes = [
@@ -32,6 +33,10 @@ const StackRoutes = [
   {
     name: 'Welcome',
     component: Welcome,
+  },
+  {
+    name: 'Login',
+    component: Login,
   },
 ];
 

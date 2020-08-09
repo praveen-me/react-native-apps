@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "clean-android": "cd android && ./gradlew clean && cd ..",
+    "clean-ios": "cd ios && xcodebuild clean && cd ../"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -20,7 +22,8 @@
     "react-native-reanimated": "^1.9.0",
     "react-native-redash": "^14.2.3",
     "react-native-safe-area-context": "^3.1.1",
-    "react-native-screens": "^2.9.0"
+    "react-native-screens": "^2.9.0",
+    "react-native-svg": "^12.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

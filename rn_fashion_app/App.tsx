@@ -4,11 +4,14 @@ import * as React from 'react';
 import {ThemeProvider} from '@shopify/restyle';
 import theme from './src/contants/theme';
 import RootNavigator from './src/lib/navigation/rootNavigation';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <RootNavigator />
+      <SafeAreaProvider>
+        <RootNavigator />
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }

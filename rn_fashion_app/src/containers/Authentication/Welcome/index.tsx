@@ -1,10 +1,14 @@
 import React from 'react';
-import {Image, View, Dimensions} from 'react-native';
+import {Image, Dimensions} from 'react-native';
 import {Box} from '../../../contants/theme';
 
 import theme from '../../../contants/theme';
 import AppText from '../../../components/Text';
 import Button from '../../../components/Button';
+import {
+  Routes,
+  StackNavigationProps,
+} from '../../../lib/navigation/rootNavigation';
 const picture = {
   src: require('./../../../assets/images/5.png'),
   width: 3383,
@@ -13,7 +17,7 @@ const picture = {
 
 const {width} = Dimensions.get('window');
 
-const Welcome = () => {
+const Welcome = ({navigation}: StackNavigationProps<Routes, 'Welcom'>) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box
@@ -54,7 +58,9 @@ const Welcome = () => {
             Login to your account below or signup for an amazing experience
           </AppText>
           <Button
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('Login');
+            }}
             label="Have an account? login"
             variant="primary"
           />
