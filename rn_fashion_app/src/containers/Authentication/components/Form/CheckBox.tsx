@@ -3,16 +3,17 @@ import AppText from '../../../../components/Text';
 import {Box} from '../../../../contants/theme';
 import Icon from 'react-native-vector-icons/Feather';
 import {RectButton} from 'react-native-gesture-handler';
+import {boolean} from 'yup';
 
 interface CheckBoxProps {
   label: string;
+  checked?: boolean;
+  onChange: (checked: boolean) => void;
 }
 
-const CheckBox = ({label}: CheckBoxProps) => {
-  const [checked, setChecked] = useState(false);
-
+const CheckBox = ({label, checked, onChange}: CheckBoxProps) => {
   return (
-    <RectButton onPress={() => setChecked(!checked)}>
+    <RectButton onPress={() => onChange(!checked)}>
       <Box flexDirection="row" alignItems="center">
         <Box
           borderRadius="s"

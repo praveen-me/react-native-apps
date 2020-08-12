@@ -10,38 +10,30 @@ import Icon from 'react-native-vector-icons/Feather';
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
-  validator: (input: string) => boolean;
+  handleChange: (e: any) => void;
+  onBlur: (e: any) => void;
+  value: string;
+  placeholder: string;
+  error?: string;
+  touched?: boolean;
 }
-
-const Valid = true;
-const Invalid = false;
-const Pristine = null;
-type InputState = typeof Valid | typeof Invalid | typeof Pristine;
 
 const TextInput = ({
   icon = '',
-  validator = () => true,
+  handleChange = () => {},
+  onBlur = () => {},
+  value = '',
+  error = '',
+  touched = false,
   ...props
 }: TextInputProps) => {
-  const [valid, setValid] = useState<InputState>(null);
-  const [input, setInput] = useState<string>('');
+  const color = !touched
+    ? 'bodyText'
+    : touched && value.length > 0 && !error
+    ? 'primatyBtnBg'
+    : 'danger';
 
-  const color =
-    valid === Pristine
-      ? 'bodyText'
-      : valid === Valid
-      ? 'primatyBtnBg'
-      : 'danger';
-
-  const validate = useCallback(() => {
-    setValid(validator(input));
-  }, [input, validator]);
-
-  useEffect(() => {
-    if (input && valid !== Pristine) {
-      validate();
-    }
-  }, [input, valid, validate]);
+  console.log(touched && value.length > 0 && !error);
 
   return (
     <Box
@@ -61,15 +53,13 @@ const TextInput = ({
           {...props}
           underlineColorAndroid="transparent"
           placeholderTextColor={theme.colors[color]}
-          value={input}
-          onChangeText={(text) => {
-            setInput(text);
-          }}
-          onBlur={validate}
+          value={value}
+          onChangeText={handleChange}
+          onBlur={onBlur}
           style={{color: theme.colors.textPrimaryColor, flex: 0.8}}
         />
       </Box>
-      {(valid === Valid || valid === Invalid) && (
+      {touched ? (
         <Box
           borderRadius="m"
           height={theme.borderRadii.m * 2}
@@ -79,11 +69,13 @@ const TextInput = ({
           justifyContent="center"
           marginRight="s">
           <Icon
-            name={valid === Valid ? 'check' : 'x'}
+            name={value.length > 0 && touched && !error ? 'check' : 'x'}
             color="white"
             size={14}
           />
         </Box>
+      ) : (
+        <></>
       )}
     </Box>
   );
