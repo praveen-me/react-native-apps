@@ -1,9 +1,10 @@
 import React from 'react';
-import {Alert, StyleSheet, Text} from 'react-native';
+import {Alert} from 'react-native';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 import AppText from '../../../components/Text';
 import theme, {Box} from '../../../contants/theme';
+import CheckBox from '../components/Form/CheckBox';
 import TextInput from '../components/Form/TextInput';
 import SocialLogin from '../components/SocialLogin';
 
@@ -63,6 +64,26 @@ const Login = () => {
             icon="lock"
             validator={validatePassword}
           />
+        </Box>
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          marginVertical="s">
+          <CheckBox label="Remember me" />
+          <Button
+            variant="transparent"
+            onPress={() => {
+              Alert.alert('Forgot Password');
+            }}
+            textVariant="primary"
+            textBtn>
+            Forgot Password
+          </Button>
+        </Box>
+        <Box marginVertical="m" alignItems="center">
+          <Button variant="primary" onPress={() => {}}>
+            Log into your account
+          </Button>
         </Box>
       </Box>
     </Container>
