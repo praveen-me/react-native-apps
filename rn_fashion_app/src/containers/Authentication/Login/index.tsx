@@ -34,6 +34,10 @@ const Login = () => {
     return re.test(String(email).toLowerCase());
   };
 
+  const validatePassword = (password: string) => {
+    return password.length >= 8;
+  };
+
   return (
     <Container {...{footer}}>
       <Box padding="xl">
@@ -48,11 +52,16 @@ const Login = () => {
           Use your credentials below and login to your account
         </AppText>
 
-        <Box>
+        <Box marginTop="l">
           <TextInput
             placeholder="Enter your email"
             icon="mail"
             validator={validateEmail}
+          />
+          <TextInput
+            placeholder="Enter your password"
+            icon="lock"
+            validator={validatePassword}
           />
         </Box>
       </Box>
