@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme: Theme) => {
     },
     slider: {
       height: SLIDE_HEIGHT,
-      borderBottomRightRadius: theme.borderRadii.m,
+      borderBottomRightRadius: theme.borderRadii.xl,
     },
     footer: {
       flex: 1,
