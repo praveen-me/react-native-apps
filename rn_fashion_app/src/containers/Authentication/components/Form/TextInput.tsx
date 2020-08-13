@@ -4,7 +4,7 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from 'react-native';
-import theme, {Box} from '../../../../contants/theme';
+import {Box, useTheme} from '../../../../contants/theme';
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -27,13 +27,13 @@ const TextInput = ({
   touched = false,
   ...props
 }: TextInputProps) => {
+  const theme = useTheme();
+
   const color = !touched
     ? 'bodyText'
     : touched && value.length > 0 && !error
     ? 'primatyBtnBg'
     : 'danger';
-
-  console.log(touched && value.length > 0 && !error);
 
   return (
     <Box

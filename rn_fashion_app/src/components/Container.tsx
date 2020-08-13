@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {StyleSheet, Dimensions, Image, StatusBar} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import theme, {Box} from '../contants/theme';
+import {Box, useTheme} from '../contants/theme';
 
 interface ContainerProps {
   children: ReactNode;
@@ -17,6 +17,7 @@ const assets = [require('./../assets/images/patterns/1.jpeg')];
 
 const Container = ({children, footer}: ContainerProps) => {
   const insets = useSafeAreaInsets();
+  const theme = useTheme();
 
   return (
     <Box flex={1} backgroundColor={'textPrimaryColor'}>
@@ -61,7 +62,5 @@ const Container = ({children, footer}: ContainerProps) => {
     </Box>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Container;

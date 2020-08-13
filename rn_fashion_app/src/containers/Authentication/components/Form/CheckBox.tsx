@@ -3,7 +3,6 @@ import AppText from '../../../../components/Text';
 import {Box} from '../../../../contants/theme';
 import Icon from 'react-native-vector-icons/Feather';
 import {RectButton} from 'react-native-gesture-handler';
-import {boolean} from 'yup';
 
 interface CheckBoxProps {
   label: string;

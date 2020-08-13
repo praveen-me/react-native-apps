@@ -1,14 +1,14 @@
 import React from 'react';
 import {Image, Dimensions} from 'react-native';
-import {Box} from '../../../contants/theme';
+import {Box, useTheme} from '../../../contants/theme';
 
-import theme from '../../../contants/theme';
 import AppText from '../../../components/Text';
 import Button from '../../../components/Button';
 import {
   Routes,
   StackNavigationProps,
 } from '../../../lib/navigation/rootNavigation';
+
 const picture = {
   src: require('./../../../assets/images/5.png'),
   width: 3383,
@@ -17,7 +17,9 @@ const picture = {
 
 const {width} = Dimensions.get('window');
 
-const Welcome = ({navigation}: StackNavigationProps<Routes, 'Welcom'>) => {
+const Welcome = ({navigation}: StackNavigationProps<Routes, 'Welcome'>) => {
+  const theme = useTheme();
+
   return (
     <Box flex={1} backgroundColor="white">
       <Box

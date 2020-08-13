@@ -1,5 +1,13 @@
 import React, {useRef} from 'react';
-import {View, StyleSheet, Dimensions, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Image,
+  ViewStyle,
+  TextStyle,
+  ImageStyle,
+} from 'react-native';
 import Slide, {SLIDE_HEIGHT} from './Slide';
 import Animated, {
   divide,
@@ -10,7 +18,7 @@ import Animated, {
 import {interpolateColor, useScrollHandler} from 'react-native-redash';
 import SubSlide from './SubSlide';
 import Dot from '../../../components/Dot';
-import theme from '../../../contants/theme';
+import {Theme, useTheme} from '../../../contants/theme';
 import {
   Routes,
   StackNavigationProps,
@@ -69,11 +77,61 @@ const slides = [
   },
 ];
 
+type NamedStyles<T> = {[P in keyof T]: ViewStyle | TextStyle | ImageStyle};
+
+const makeStyles = <T extends NamedStyles<T>>(
+  styles: (theme: Theme) => T,
+) => () => {
+  const theme = useTheme();
+  return styles(theme);
+};
+
+const useStyles = makeStyles((theme: Theme) => {
+  return {
+    container: {
+      flex: 1,
+      backgroundColor: 'white',
+    },
+    slider: {
+      height: SLIDE_HEIGHT,
+      borderBottomRightRadius: theme.borderRadii.m,
+    },
+    footer: {
+      flex: 1,
+    },
+    footerContent: {
+      flex: 1,
+      backgroundColor: 'white',
+      borderTopLeftRadius: theme.borderRadii.xl,
+    },
+    pagination: {
+      ...StyleSheet.absoluteFillObject,
+      height: theme.borderRadii.xl,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+    },
+    footerSlides: {
+      width: width * slides.length,
+      flexDirection: 'row',
+    },
+    underlay: {
+      ...StyleSheet.absoluteFillObject,
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      borderBottomRightRadius: theme.borderRadii.xl,
+    },
+  };
+});
+
 const Onboarding = ({
   navigation,
 }: StackNavigationProps<Routes, 'Onboarding'>) => {
   const scroll = useRef<Animated.ScrollView>(null);
   const {scrollHandler, x} = useScrollHandler();
+  const theme = useTheme();
+
+  const styles = useStyles();
 
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -171,41 +229,5 @@ const Onboarding = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  slider: {
-    height: SLIDE_HEIGHT,
-    borderBottomRightRadius: theme.borderRadii.xl,
-  },
-  footer: {
-    flex: 1,
-  },
-  footerContent: {
-    flex: 1,
-    backgroundColor: 'white',
-    borderTopLeftRadius: theme.borderRadii.xl,
-  },
-  pagination: {
-    ...StyleSheet.absoluteFillObject,
-    height: theme.borderRadii.xl,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  footerSlides: {
-    width: width * slides.length,
-    flexDirection: 'row',
-  },
-  underlay: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    borderBottomRightRadius: theme.borderRadii.xl,
-  },
-});
 
 export default Onboarding;

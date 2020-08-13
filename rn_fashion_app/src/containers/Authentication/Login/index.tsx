@@ -1,9 +1,9 @@
 import React from 'react';
-import {Alert, YellowBox} from 'react-native';
+import {Alert} from 'react-native';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 import AppText from '../../../components/Text';
-import theme, {Box} from '../../../contants/theme';
+import {Box, useTheme} from '../../../contants/theme';
 import CheckBox from '../components/Form/CheckBox';
 import TextInput from '../components/Form/TextInput';
 import SocialLogin from '../components/SocialLogin';
@@ -19,6 +19,8 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const theme = useTheme();
+
   const footer = (
     <>
       <SocialLogin />
