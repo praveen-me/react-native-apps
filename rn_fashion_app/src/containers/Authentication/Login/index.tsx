@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useReducer, useRef} from 'react';
 import {Alert} from 'react-native';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
@@ -8,9 +8,10 @@ import CheckBox from '../components/Form/CheckBox';
 import TextInput from '../components/Form/TextInput';
 import SocialLogin from '../components/SocialLogin';
 
-import {Formik} from 'formik';
+import {Formik, useFormik} from 'formik';
 
 import * as Yup from 'yup';
+import Footer from '../components/Footer';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -20,106 +21,96 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   const theme = useTheme();
+  const {
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    values,
+    errors,
+    touched,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {email: '', password: '', remember: false},
+    onSubmit: (values) => console.log(values),
+    validationSchema: LoginSchema,
+  });
+
+  const passwordField = useRef<typeof TextInput>(null);
 
   const footer = (
-    <>
-      <SocialLogin />
-      <Box flexDirection="row" justifyContent="center" marginVertical="m">
-        <AppText
-          style={{color: theme.colors.white, marginRight: theme.spacing.s}}>
-          Don't have an account?
-        </AppText>
-        <Button
-          variant="transparent"
-          onPress={() => {
-            Alert.alert('Signup code here');
-          }}
-          textVariant="primary"
-          textBtn>
-          SignUp
-        </Button>
-      </Box>
-    </>
+    <Footer onPress={() => {}} title="Don't have an account?" action="Signup" />
   );
 
   return (
     <Container {...{footer}}>
-      <Box padding="xl">
+      <Box padding="l">
         <AppText
           variant="title1"
           center
           medium
-          style={{marginBottom: theme.spacing.l}}>
+          style={{marginBottom: theme.spacing.m}}>
           Welcome Back
         </AppText>
         <AppText variant="body" center>
           Use your credentials below and login to your account
         </AppText>
 
-        <Formik
-          initialValues={{email: '', password: '', remember: false}}
-          onSubmit={(values) => console.log(values)}
-          validationSchema={LoginSchema}>
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-            setFieldValue,
-          }) => {
-            return (
-              <>
-                <Box marginTop="l">
-                  <TextInput
-                    placeholder="Enter your email"
-                    icon="mail"
-                    // validator={validateEmail}
-                    handleChange={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    value={values.email}
-                    error={errors.email}
-                    touched={touched.email}
-                  />
-                  <TextInput
-                    placeholder="Enter your password"
-                    icon="lock"
-                    handleChange={handleChange('password')}
-                    onBlur={handleBlur('password')}
-                    value={values.password}
-                    error={errors.password}
-                    touched={touched.password}
-                  />
-                </Box>
-                <Box
-                  flexDirection="row"
-                  justifyContent="space-between"
-                  marginVertical="s">
-                  <CheckBox
-                    label="Remember me"
-                    checked={values.remember}
-                    onChange={(value) => setFieldValue('remember', value)}
-                  />
-                  <Button
-                    variant="transparent"
-                    onPress={() => {
-                      Alert.alert('Forgot Password');
-                    }}
-                    textVariant="primary"
-                    textBtn>
-                    Forgot Password
-                  </Button>
-                </Box>
-                <Box marginVertical="m" alignItems="center">
-                  <Button variant="primary" onPress={handleSubmit}>
-                    Log into your account
-                  </Button>
-                </Box>
-              </>
-            );
-          }}
-        </Formik>
+        <Box marginTop="m">
+          <TextInput
+            placeholder="Enter your email"
+            icon="mail"
+            handleChange={handleChange('email')}
+            onBlur={handleBlur('email')}
+            value={values.email}
+            error={errors.email}
+            touched={touched.email}
+            autoCompleteType="email"
+            autoCapitalize="none"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            onSubmitEditing={() => passwordField.current?.focus()}
+          />
+          <TextInput
+            ref={passwordField}
+            placeholder="Enter your password"
+            icon="lock"
+            handleChange={handleChange('password')}
+            onBlur={handleBlur('password')}
+            value={values.password}
+            error={errors.password}
+            touched={touched.password}
+            secureTextEntry
+            autoCompleteType="password"
+            autoCapitalize="none"
+            returnKeyType="go"
+            returnKeyLabel="go"
+            onSubmitEditing={handleSubmit}
+          />
+        </Box>
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          marginVertical="s">
+          <CheckBox
+            label="Remember me"
+            checked={values.remember}
+            onChange={(value) => setFieldValue('remember', value)}
+          />
+          <Button
+            variant="transparent"
+            onPress={() => {
+              Alert.alert('Forgot Password');
+            }}
+            textVariant="primary"
+            textBtn>
+            Forgot Password
+          </Button>
+        </Box>
+        <Box marginVertical="m" alignItems="center">
+          <Button variant="primary" onPress={handleSubmit}>
+            Log into your account
+          </Button>
+        </Box>
       </Box>
     </Container>
   );

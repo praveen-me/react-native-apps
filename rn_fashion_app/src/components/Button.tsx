@@ -1,5 +1,5 @@
 import {useTheme} from '@shopify/restyle';
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {StyleSheet} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import {Theme} from '../contants/theme';
@@ -10,7 +10,7 @@ interface ButtonProps {
   label?: string;
   variant?: 'default' | 'primary' | 'transparent';
   onPress: () => void;
-  children?: string;
+  children?: string | ReactNode;
   textVariant?: 'default' | 'primary' | 'transparent';
   textBtn?: boolean;
 }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Text} from '../contants/theme';
 import fonts from '../contants/fonts';
 
 interface TextProps {
-  children: string;
+  children: string | ReactNode;
   bold?: boolean;
   medium?: boolean;
   style?: object | Array<object>;
