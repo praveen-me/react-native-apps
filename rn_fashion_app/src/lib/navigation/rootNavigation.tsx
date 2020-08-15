@@ -10,6 +10,7 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {Login, Onboarding, Welcome} from '../../containers/Authentication';
+import SignUp from '../../containers/Authentication/SignUp';
 
 export interface StackNavigationProps<
   ParamList extends ParamListBase,
@@ -19,13 +20,21 @@ export interface StackNavigationProps<
   route: RouteProp<ParamList, RouteName>;
 }
 
+type RouteName = 'Onboarding' | 'Welcome' | 'Login' | 'SignUp';
+
+type Route = {
+  name: RouteName;
+  component: React.FunctionComponent<any>;
+};
+
 export type Routes = {
   Onboarding: undefined;
   Welcome: undefined;
   Login: undefined;
+  SignUp: undefined;
 };
 
-const StackRoutes = [
+const StackRoutes: Array<Route> = [
   {
     name: 'Onboarding',
     component: Onboarding,
@@ -37,6 +46,10 @@ const StackRoutes = [
   {
     name: 'Login',
     component: Login,
+  },
+  {
+    name: 'SignUp',
+    component: SignUp,
   },
 ];
 

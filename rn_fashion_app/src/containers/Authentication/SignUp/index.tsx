@@ -16,13 +16,15 @@ import {
   StackNavigationProps,
 } from '../../../lib/navigation/rootNavigation';
 
-const LoginSchema = Yup.object().shape({
+const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string().min(2, 'Too Short').max(30, 'Too Long'),
-  remember: Yup.boolean(),
+  passwordConfirmation: Yup.string()
+    .equals([Yup.ref('password')], "Password don't match")
+    .required('Required'),
 });
 
-const Login = ({navigation}: StackNavigationProps<Routes, 'Login'>) => {
+const SignUp = ({navigation}: StackNavigationProps<Routes, 'SignUp'>) => {
   const theme = useTheme();
   const {
     handleChange,
@@ -31,20 +33,20 @@ const Login = ({navigation}: StackNavigationProps<Routes, 'Login'>) => {
     values,
     errors,
     touched,
-    setFieldValue,
   } = useFormik({
-    initialValues: {email: '', password: '', remember: false},
+    initialValues: {email: '', password: '', passwordConfirmation: ''},
     onSubmit: (values) => console.log(values),
-    validationSchema: LoginSchema,
+    validationSchema: SignUpSchema,
   });
 
   const passwordField = useRef<typeof TextInput>(null);
+  const confirmPasswordField = useRef<typeof TextInput>(null);
 
   const footer = (
     <Footer
-      onPress={() => navigation.navigate('SignUp')}
-      title="Don't have an account?"
-      action="Signup"
+      onPress={() => navigation.navigate('Login')}
+      title="Already have an account?"
+      action="Login here"
     />
   );
 
@@ -56,10 +58,10 @@ const Login = ({navigation}: StackNavigationProps<Routes, 'Login'>) => {
           center
           medium
           style={{marginBottom: theme.spacing.m}}>
-          Welcome Back
+          Create Account
         </AppText>
         <AppText variant="body" center>
-          Use your credentials below and login to your account
+          Let's us know what you name, email and your password
         </AppText>
 
         <Box marginTop="m">
@@ -91,31 +93,28 @@ const Login = ({navigation}: StackNavigationProps<Routes, 'Login'>) => {
             autoCapitalize="none"
             returnKeyType="go"
             returnKeyLabel="go"
+            onSubmitEditing={() => confirmPasswordField.current?.focus()}
+          />
+          <TextInput
+            ref={confirmPasswordField}
+            placeholder="Confirm your password"
+            icon="lock"
+            handleChange={handleChange('passwordConfirmation')}
+            onBlur={handleBlur('passwordConfirmation')}
+            value={values.passwordConfirmation}
+            error={errors.passwordConfirmation}
+            touched={touched.passwordConfirmation}
+            secureTextEntry
+            autoCompleteType="password"
+            autoCapitalize="none"
+            returnKeyType="go"
+            returnKeyLabel="go"
             onSubmitEditing={handleSubmit}
           />
         </Box>
-        <Box
-          flexDirection="row"
-          justifyContent="space-between"
-          marginVertical="s">
-          <CheckBox
-            label="Remember me"
-            checked={values.remember}
-            onChange={(value) => setFieldValue('remember', value)}
-          />
-          <Button
-            variant="transparent"
-            onPress={() => {
-              Alert.alert('Forgot Password');
-            }}
-            textVariant="primary"
-            textBtn>
-            Forgot Password
-          </Button>
-        </Box>
         <Box marginVertical="m" alignItems="center">
           <Button variant="primary" onPress={handleSubmit}>
-            Log into your account
+            Create your account
           </Button>
         </Box>
       </Box>
@@ -123,4 +122,4 @@ const Login = ({navigation}: StackNavigationProps<Routes, 'Login'>) => {
   );
 };
 
-export default Login;
+export default SignUp;

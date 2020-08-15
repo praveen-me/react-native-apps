@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, MutableRefObject, RefObject} from 'react';
 import {
   StyleSheet,
   TextInput as RNTextInput,
