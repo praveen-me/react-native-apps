@@ -11,6 +11,7 @@ import {
 } from '@react-navigation/stack';
 import {Login, Onboarding, Welcome} from '../../containers/Authentication';
 import SignUp from '../../containers/Authentication/SignUp';
+import ForgetPassword from '../../containers/Authentication/ForgetPassword';
 
 export interface StackNavigationProps<
   ParamList extends ParamListBase,
@@ -20,7 +21,12 @@ export interface StackNavigationProps<
   route: RouteProp<ParamList, RouteName>;
 }
 
-type RouteName = 'Onboarding' | 'Welcome' | 'Login' | 'SignUp';
+type RouteName =
+  | 'Onboarding'
+  | 'Welcome'
+  | 'Login'
+  | 'SignUp'
+  | 'ForgetPassword';
 
 type Route = {
   name: RouteName;
@@ -32,6 +38,7 @@ export type Routes = {
   Welcome: undefined;
   Login: undefined;
   SignUp: undefined;
+  ForgetPassword: undefined;
 };
 
 const StackRoutes: Array<Route> = [
@@ -50,6 +57,10 @@ const StackRoutes: Array<Route> = [
   {
     name: 'SignUp',
     component: SignUp,
+  },
+  {
+    name: 'ForgetPassword',
+    component: ForgetPassword,
   },
 ];
 

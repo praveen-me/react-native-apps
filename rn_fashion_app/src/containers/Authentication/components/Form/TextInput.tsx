@@ -18,7 +18,7 @@ interface TextInputProps extends RNTextInputProps {
   touched?: boolean;
 }
 
-const TextInput = forwardRef(
+const TextInput = forwardRef<RNTextInput, TextInputProps>(
   (
     {
       icon = '',
@@ -64,7 +64,7 @@ const TextInput = forwardRef(
             onChangeText={handleChange}
             onBlur={onBlur}
             style={fieldStyle}
-            ref={ref}
+            {...{ref}}
           />
         </Box>
         {touched ? (

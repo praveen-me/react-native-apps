@@ -1,10 +1,9 @@
 import React, {useRef} from 'react';
-import {Alert} from 'react-native';
+import {Alert, TextInput as RNTextInput} from 'react-native';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 import AppText from '../../../components/Text';
 import {Box, useTheme} from '../../../contants/theme';
-import CheckBox from '../components/Form/CheckBox';
 import TextInput from '../components/Form/TextInput';
 
 import {useFormik} from 'formik';
@@ -39,8 +38,8 @@ const SignUp = ({navigation}: StackNavigationProps<Routes, 'SignUp'>) => {
     validationSchema: SignUpSchema,
   });
 
-  const passwordField = useRef<typeof TextInput>(null);
-  const confirmPasswordField = useRef<typeof TextInput>(null);
+  const passwordField = useRef<RNTextInput>(null);
+  const confirmPasswordField = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
@@ -52,7 +51,7 @@ const SignUp = ({navigation}: StackNavigationProps<Routes, 'SignUp'>) => {
 
   return (
     <Container {...{footer}}>
-      <Box padding="l">
+      <Box padding="xl">
         <AppText
           variant="title1"
           center
