@@ -34,10 +34,11 @@ const ForgetPassword = ({
     values,
     errors,
     touched,
-    setFieldValue,
   } = useFormik({
     initialValues: {email: ''},
-    onSubmit: (values) => console.log(values),
+    onSubmit: () => {
+      navigation.navigate('PasswordChanged');
+    },
     validationSchema: ForgetPasswordSchema,
   });
 

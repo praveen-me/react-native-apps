@@ -40,7 +40,10 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
       ? 'primatyBtnBg'
       : 'danger';
 
-    const fieldStyle = {color: theme.colors.textPrimaryColor, flex: 0.8};
+    const fieldStyle = {
+      color: theme.colors.textPrimaryColor,
+      flex: 1,
+    };
 
     return (
       <Box
@@ -56,6 +59,7 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
           <Box padding="s">
             <Icon name={icon} {...{color: theme.colors[color]}} size={16} />
           </Box>
+
           <RNTextInput
             {...props}
             underlineColorAndroid="transparent"
@@ -74,8 +78,10 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
             backgroundColor={color}
             alignItems="center"
             justifyContent="center"
-            marginRight="s"
-            style={{borderRadius: ICON_CONTAINER_SIZE / 2}}>
+            marginHorizontal="s"
+            style={{borderRadius: ICON_CONTAINER_SIZE / 2}}
+            position="absolute"
+            right={4}>
             <Icon
               name={value.length > 0 && touched && !error ? 'check' : 'x'}
               color="white"
