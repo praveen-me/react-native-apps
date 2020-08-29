@@ -7,6 +7,7 @@ import {
 import {Box, useTheme} from '../../../../contants/theme';
 
 import Icon from 'react-native-vector-icons/Feather';
+import RoundedIcon from '../../../../components/RoundedIcon';
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
@@ -32,7 +33,7 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
     ref,
   ) => {
     const theme = useTheme();
-    const ICON_CONTAINER_SIZE = theme.borderRadii.m * 2.5;
+    const ICON_CONTAINER_SIZE = theme.borderRadii.m * 2;
 
     const color = !touched
       ? 'bodyText'
@@ -71,26 +72,15 @@ const TextInput = forwardRef<RNTextInput, TextInputProps>(
             {...{ref}}
           />
         </Box>
-        {touched ? (
-          <Box
-            height={ICON_CONTAINER_SIZE}
-            width={ICON_CONTAINER_SIZE}
-            backgroundColor={color}
-            alignItems="center"
-            justifyContent="center"
-            marginHorizontal="s"
-            style={{borderRadius: ICON_CONTAINER_SIZE / 2}}
-            position="absolute"
-            right={4}>
-            <Icon
+        {touched && (
+          <Box position="absolute" right={4}>
+            <RoundedIcon
+              size={ICON_CONTAINER_SIZE}
+              backgroundColor={color}
               name={value.length > 0 && touched && !error ? 'check' : 'x'}
-              color="white"
-              size={14}
-              style={{textAlign: 'center'}}
+              color={'white'}
             />
           </Box>
-        ) : (
-          <></>
         )}
       </Box>
     );

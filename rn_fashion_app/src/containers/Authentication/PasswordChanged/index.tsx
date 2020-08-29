@@ -11,6 +11,9 @@ import {Box, useTheme} from '../../../contants/theme';
 import Button from '../../../components/Button';
 import Icon from 'react-native-vector-icons/Feather';
 import CloseButton from '../../../components/CloseButton';
+import RoundedIcon from '../../../components/RoundedIcon';
+
+const SIZE = 80;
 
 const PasswordChanged = ({
   navigation,
@@ -26,8 +29,14 @@ const PasswordChanged = ({
   return (
     <Container {...{footer}}>
       <Box padding="xl" justifyContent="center" alignItems="center" flex={1}>
-        <Box>
-          <Icon name="check" />
+        <Box marginBottom="xl">
+          <RoundedIcon
+            size={SIZE}
+            backgroundColor="primaryLight"
+            color={theme.colors.primatyBtnBg}
+            name="check"
+            iconSize={30}
+          />
         </Box>
         <AppText
           variant="title1"
