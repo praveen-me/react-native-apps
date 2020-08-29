@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Theme} from '../contants/theme';
 import Icon from 'react-native-vector-icons/Feather';
 
-interface Props {
+export interface RoundedIconProps {
   name: string;
   size: number;
   color: string;
@@ -10,7 +10,13 @@ interface Props {
   iconSize?: number;
 }
 
-const RoundedIcon = ({backgroundColor, size, name, color, iconSize}: Props) => {
+const RoundedIcon = ({
+  backgroundColor,
+  size,
+  name,
+  color,
+  iconSize,
+}: RoundedIconProps) => {
   const iconDimensions = iconSize || size * 0.7;
 
   return (

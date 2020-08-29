@@ -9,9 +9,8 @@ import {
 
 import {Box, useTheme} from '../../../contants/theme';
 import Button from '../../../components/Button';
-import Icon from 'react-native-vector-icons/Feather';
-import CloseButton from '../../../components/CloseButton';
 import RoundedIcon from '../../../components/RoundedIcon';
+import RoundedIconButton from '../../../components/RoundedIconButton';
 
 const SIZE = 80;
 
@@ -22,7 +21,13 @@ const PasswordChanged = ({
 
   const footer = (
     <Box alignItems="center" marginVertical="l">
-      <CloseButton onPress={() => navigation.replace('Login')} />
+      <RoundedIconButton
+        name="x"
+        size={60}
+        backgroundColor="white"
+        color={theme.colors.textPrimaryColor}
+        onPress={() => navigation.replace('Login')}
+      />
     </Box>
   );
 
