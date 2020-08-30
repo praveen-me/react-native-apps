@@ -51,7 +51,10 @@ const Button = ({
   };
 
   return (
-    <RectButton style={[styles.container, inlineStyles]} onPress={onPress}>
+    <RectButton
+      style={[styles.container, inlineStyles]}
+      onPress={onPress}
+      activeOpacity={variant !== 'transparent' ? 0.3 : 0}>
       <AppText medium style={[{color}]} variant="button">
         {label || children}
       </AppText>
